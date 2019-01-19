@@ -25,7 +25,7 @@ namespace Schronisko
         public Nullable<int> year_of_birth { get; set; }
         public string photo_path { get; set; }
         public string description { get; set; }
-        public int id_race { get; set; }
+        public Nullable<int> id_race { get; set; }
     
         public virtual Races Races { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

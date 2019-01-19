@@ -14,7 +14,7 @@
           <Property Name="year_of_birth" Type="int" />
           <Property Name="photo_path" Type="nvarchar" MaxLength="350" />
           <Property Name="description" Type="nvarchar(max)" />
-          <Property Name="id_race" Type="int" Nullable="false" />
+          <Property Name="id_race" Type="int" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -69,8 +69,8 @@
           <Property Name="id_user" Type="int" Nullable="false" />
           <Property Name="id_event" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Dogs__id_race__76EBA2E9">
-          <End Role="Races" Type="Self.Races" Multiplicity="1" />
+        <Association Name="FK__Dogs__id_race__78D3EB5B">
+          <End Role="Races" Type="Self.Races" Multiplicity="0..1" />
           <End Role="Dogs" Type="Self.Dogs" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Races">
@@ -138,7 +138,7 @@
           <EntitySet Name="Races" EntityType="Self.Races" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersEvents" EntityType="Self.UsersEvents" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Dogs__id_race__76EBA2E9" Association="Self.FK__Dogs__id_race__76EBA2E9">
+          <AssociationSet Name="FK__Dogs__id_race__78D3EB5B" Association="Self.FK__Dogs__id_race__78D3EB5B">
             <End Role="Races" EntitySet="Races" />
             <End Role="Dogs" EntitySet="Dogs" />
           </AssociationSet>
@@ -182,7 +182,7 @@
             <End Role="UsersEvents" EntitySet="UsersEvents" />
           </AssociationSet>
           <EntitySet Name="Dogs" EntityType="pszczupakModel.Dogs" />
-          <AssociationSet Name="FK__Dogs__id_race__76EBA2E9" Association="pszczupakModel.FK__Dogs__id_race__76EBA2E9">
+          <AssociationSet Name="FK__Dogs__id_race__78D3EB5B" Association="pszczupakModel.FK__Dogs__id_race__78D3EB5B">
             <End Role="Races" EntitySet="Races" />
             <End Role="Dogs" EntitySet="Dogs" />
           </AssociationSet>
@@ -220,7 +220,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Dogs" Relationship="pszczupakModel.FK__Dogs__id_race__76EBA2E9" FromRole="Races" ToRole="Dogs" />
+          <NavigationProperty Name="Dogs" Relationship="pszczupakModel.FK__Dogs__id_race__78D3EB5B" FromRole="Races" ToRole="Dogs" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -299,12 +299,12 @@
           <Property Name="year_of_birth" Type="Int32" />
           <Property Name="photo_path" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="id_race" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Races" Relationship="pszczupakModel.FK__Dogs__id_race__76EBA2E9" FromRole="Dogs" ToRole="Races" />
+          <Property Name="id_race" Type="Int32" />
+          <NavigationProperty Name="Races" Relationship="pszczupakModel.FK__Dogs__id_race__78D3EB5B" FromRole="Dogs" ToRole="Races" />
           <NavigationProperty Name="Events" Relationship="pszczupakModel.FK__Events__id_dog__77DFC722" FromRole="Dogs" ToRole="Events" />
         </EntityType>
-        <Association Name="FK__Dogs__id_race__76EBA2E9">
-          <End Type="pszczupakModel.Races" Role="Races" Multiplicity="1" />
+        <Association Name="FK__Dogs__id_race__78D3EB5B">
+          <End Type="pszczupakModel.Races" Role="Races" Multiplicity="0..1" />
           <End Type="pszczupakModel.Dogs" Role="Dogs" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Races">

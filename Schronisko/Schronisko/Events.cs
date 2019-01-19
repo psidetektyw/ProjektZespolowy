@@ -24,7 +24,7 @@ namespace Schronisko
         public System.DateTime date { get; set; }
         public System.TimeSpan time { get; set; }
         public string description { get; set; }
-        public bool approved { get; set; }
+        public int approved { get; set; }
         public int id_user { get; set; }
         public Nullable<int> id_dog { get; set; }
     

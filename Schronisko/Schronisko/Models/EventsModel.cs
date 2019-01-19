@@ -30,11 +30,11 @@ namespace Schronisko.Models
 
 
         [DisplayName("Zatwierdzenie")]
-        [Required(ErrorMessage = "")]
-        public bool approved { get; set; }
+       
+        public int approved { get; set; }
 
 
-        [DisplayName("Event został utowrzony przez")]
+        [DisplayName("Utworzony przez")]
         [Required(ErrorMessage = "Proszę wprowadzić osobę która utworzyła event.")]
         public int id_user { get; set; }
 

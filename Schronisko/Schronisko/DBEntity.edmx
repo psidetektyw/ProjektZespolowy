@@ -24,7 +24,7 @@
           <Property Name="date" Type="date" Nullable="false" />
           <Property Name="time" Type="time" Precision="7" Nullable="false" />
           <Property Name="description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="approved" Type="bit" Nullable="false" />
+          <Property Name="approved" Type="int" Nullable="false" />
           <Property Name="id_user" Type="int" Nullable="false" />
           <Property Name="id_dog" Type="int" />
         </EntityType>
@@ -234,7 +234,7 @@
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="time" Type="Time" Nullable="false" Precision="7" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="approved" Type="Boolean" Nullable="false" />
+          <Property Name="approved" Type="Int32" Nullable="false" />
           <Property Name="id_user" Type="Int32" Nullable="false" />
           <Property Name="id_dog" Type="Int32" />
           <NavigationProperty Name="Dogs" Relationship="pszczupakModel.FK__Events__id_dog__7CA47C3F" FromRole="Events" ToRole="Dogs" />

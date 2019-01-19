@@ -70,6 +70,55 @@ namespace Schronisko.Helpers
             return d;
         }
 
+        public static EventsModel ToEventsModelWithID(this Events given)
+        {
+            EventsModel e = new EventsModel();
+            e.id = given.id;
+            e.approved = given.approved;
+            e.date = given.date;
+            e.description = given.description;
+            e.id_dog = given.id_dog;
+            e.id_user = given.id_user;
+            e.time = given.time;
+            return e;
+        }
+
+        public static Events ToEventsWithoutID(this EventsModel given)
+        {
+            Events e = new Events();
+            e.approved = given.approved;
+            e.date = given.date;
+            e.description = given.description;
+            e.id_dog = given.id_dog;
+            e.id_user = given.id_user;
+            e.time = given.time;
+            return e;
+        }
+
+        public static Events ToEventsWithID(this EventsModel given)
+        {
+            Events e = new Events();
+            e.id = given.id;
+            e.approved = given.approved;
+            e.date = given.date;
+            e.description = given.description;
+            e.id_dog = given.id_dog;
+            e.id_user = given.id_user;
+            e.time = given.time;
+            return e;
+        }
+
+        public static EventsModel ToEventsModelWithoutID(this Events given)
+        {
+            EventsModel e = new EventsModel();
+            e.approved = given.approved;
+            e.date = given.date;
+            e.description = given.description;
+            e.id_dog = given.id_dog;
+            e.id_user = given.id_user;
+            e.time = given.time;
+            return e;
+        }
 
         public static DogsModel ToDogsModelWithoutID(this Dogs dogs)
         {

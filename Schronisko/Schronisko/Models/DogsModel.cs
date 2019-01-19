@@ -34,7 +34,7 @@ namespace Schronisko.Models
 
         [DisplayName("Rasa psa")]
         [Required(ErrorMessage = "Proszę wprowadzić rasę psa.")]
-        public int id_race { get; set; }
+        public int? id_race { get; set; }
 
         public Races races
         {

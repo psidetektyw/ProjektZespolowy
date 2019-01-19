@@ -16,6 +16,7 @@ namespace Schronisko.Controllers
             pszczupakEntities ent = new pszczupakEntities();
             List<RacesModel> race = new List<RacesModel>();
 
+
             foreach (Races r in ent.Races.ToList())    
                 race.Add(r.ToRacesModelWithID());
             
@@ -94,6 +95,15 @@ namespace Schronisko.Controllers
         {
             pszczupakEntities ent = new pszczupakEntities();
             Races race = ent.Races.Where(x => x.id == id).First();
+
+            List<Dogs> dogs = ent.Dogs.Where(x => x.id_race == id).ToList();
+
+            foreach(Dogs d in dogs)
+            {
+                d.id_race = null;
+                ent.Entry(ent.Dogs.Where(x => x.id == d.id).First()).CurrentValues.SetValues(d);
+            }
+
             ent.Races.Remove(race);
             ent.SaveChanges();
             return RedirectToAction("Index");

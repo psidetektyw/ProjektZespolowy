@@ -92,7 +92,8 @@ namespace Schronisko.Helpers
             d.year_of_birth = dogs.year_of_birth;
             d.description = dogs.description;
             d.photo_path = dogs.photo_path;
-            d.id_race = dogs.id_race;
+            if(dogs.id_race!=null)
+            d.id_race = (int)dogs.id_race;
             return d;
         }
 
@@ -103,7 +104,8 @@ namespace Schronisko.Helpers
             d.year_of_birth = dogs.year_of_birth;
             d.description = dogs.description;
             d.photo_path = dogs.photo_path;
-            d.id_race = dogs.id_race;
+            if (dogs.id_race != null)
+                d.id_race = (int)dogs.id_race;
             return d;
         }
 
@@ -114,7 +116,8 @@ namespace Schronisko.Helpers
             d.description = dogs.description;
             d.photo_path = dogs.photo_path;
             d.Races = dogs.races;
-            d.id_race = dogs.id_race;
+            if (dogs.id_race != null)
+                d.id_race = (int)dogs.id_race;
             return d;
         }
     }

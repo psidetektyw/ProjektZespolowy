@@ -1,0 +1,44 @@
+﻿@model Schronisko.Models.NewsViewModel
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>NewsViewModel</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.user_id)
+    @Html.HiddenFor(model => model.add_date)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.news1, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.news1, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.news1, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

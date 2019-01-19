@@ -13,33 +13,33 @@ namespace Schronisko.Models
 
         public int id { get; set; }
 
-
-        [DisplayName("Data rozpoczecia")]
-        [Required(ErrorMessage = "Proszę wprowadzić datę rozpoczecia.")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        [DisplayName("Data rozpoczęcia")]
+        [Required(ErrorMessage = "Podaj datę wydarzenia")]
         public System.DateTime date { get; set; }
 
-
-        [DisplayName("Czas rozpoczecia")]
-        [Required(ErrorMessage = "Proszę wprowadzić czas rozpoczecia.")]
+        [DisplayFormat(DataFormatString = @"{0:hh\:mm}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Time)]
+        [DisplayName("Czas rozpoczęcia")]
+        [Required(ErrorMessage = "Podaj czas rozpoczęcia")]
         public System.TimeSpan time { get; set; }
 
 
-        [DisplayName("Opis Eventu")]
-        [Required(ErrorMessage = "Proszę wprowadzić opis eventu.")]
+        [DisplayName("Opis wydarzenia")]
+        [Required(ErrorMessage = "Krótki opis wydarzenia")]
         public string description { get; set; }
 
 
-        [DisplayName("Zatwierdzenie")]
-       
+        [DisplayName("Status")]
         public int approved { get; set; }
 
 
         [DisplayName("Utworzony przez")]
-        [Required(ErrorMessage = "Proszę wprowadzić osobę która utworzyła event.")]
         public int id_user { get; set; }
 
         [DisplayName("Pies")]
-        [Required(ErrorMessage = "Proszę wybrać psa.")]
+        [Required(ErrorMessage = "Wybierz psa")]
         public int? id_dog { get; set; }
 
         public Dogs dogs

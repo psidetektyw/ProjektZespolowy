@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Schronisko.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "UsersRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Wszyscy Użytkownicy</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.pesel)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.adres)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.role)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.pesel)
+        </td>
+
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.adres)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.role)
+        </td>
+        <td>
+            @Html.ActionLink("Zmień Role", "EditRole", new { id = item.id }) | @Html.ActionLink("Usuń", "DeleteUser", new { id = item.id })
+        </td>
+    </tr>
+    }
+
+</table>

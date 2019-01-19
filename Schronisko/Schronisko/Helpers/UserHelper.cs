@@ -17,7 +17,9 @@ namespace Schronisko.Helpers
         public static int GetUserId(string login)
         {
             pszczupakEntities ent = new pszczupakEntities();
-            return ent.Users.Where(x => x.login == login).FirstOrDefault().id;
+            if(!login.Equals(""))
+                return ent.Users.Where(x => x.login == login).FirstOrDefault().id;
+            return 0;
         }
     }
 }

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Schronisko.Models.EventsModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.approved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_dog)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+
+            @if (@Html.DisplayFor(modelItem => item.approved).ToString() == "0")
+            {
+                <td>
+                    oczekuje na zatwierdzenie
+                </td>
+            }
+            else
+            {
+                <td>
+                    zatwierdzone
+                </td>
+            }
+
+
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.users.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dogs.name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

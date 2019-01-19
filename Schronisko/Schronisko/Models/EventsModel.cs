@@ -9,6 +9,7 @@ namespace Schronisko.Models
 {
     public class EventsModel
     {
+      
 
         public int id { get; set; }
 
@@ -28,6 +29,15 @@ namespace Schronisko.Models
         public string description { get; set; }
 
 
+        [DisplayName("Zatwierdzenie")]
+        [Required(ErrorMessage = "")]
+        public bool approved { get; set; }
+
+
+        [DisplayName("Event został utowrzony przez")]
+        [Required(ErrorMessage = "Proszę wprowadzić osobę która utworzyła event.")]
+        public int id_user { get; set; }
+
         [DisplayName("Pies")]
         [Required(ErrorMessage = "Proszę wybrać psa.")]
         public int? id_dog { get; set; }
@@ -40,5 +50,15 @@ namespace Schronisko.Models
                 return ent.Dogs.Where(x => x.id == id_dog).FirstOrDefault();
             }
         }
+
+        public Users users
+        {
+            get
+            {
+                pszczupakEntities ent = new pszczupakEntities();
+                return ent.Users.Where(x => x.id == id_user).FirstOrDefault();
+            }
+        }
+
     }
 }

@@ -5,18 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f2f96e54b5b54bdda9a658e354b7cc38" Name="Diagram1" ZoomLevel="86">
-        <EntityTypeShape EntityType="pszczupakModel.Events" Width="1.5" PointX="4.625" PointY="7.125" />
-        <EntityTypeShape EntityType="pszczupakModel.News" Width="1.5" PointX="0.5" PointY="4.75" />
-        <EntityTypeShape EntityType="pszczupakModel.Races" Width="1.5" PointX="4.625" PointY="13" />
-        <EntityTypeShape EntityType="pszczupakModel.Users" Width="1.5" PointX="0.625" PointY="0.5" />
-        <EntityTypeShape EntityType="pszczupakModel.UsersEvents" Width="1.5" PointX="3" PointY="2.375" />
-        <AssociationConnector Association="pszczupakModel.FK__UsersEven__id_ev__6C6E1476" />
+        <EntityTypeShape EntityType="pszczupakModel.Dogs" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="pszczupakModel.Events" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="pszczupakModel.News" Width="1.5" PointX="3" PointY="6.625" />
+        <EntityTypeShape EntityType="pszczupakModel.Races" Width="1.5" PointX="1.5" PointY="11" />
+        <EntityTypeShape EntityType="pszczupakModel.Users" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="pszczupakModel.UsersEvents" Width="1.5" PointX="5.25" PointY="3" />
+        <AssociationConnector Association="pszczupakModel.FK__Dogs__id_race__78D3EB5B" />
+        <AssociationConnector Association="pszczupakModel.FK__Events__id_dog__7CA47C3F" />
+        <AssociationConnector Association="pszczupakModel.FK__Events__id_user__7E8CC4B1" />
+        <AssociationConnector Association="pszczupakModel.FK__UsersEven__id_ev__7D98A078" />
         <AssociationConnector Association="pszczupakModel.FK__News__user_id__740F363E" />
         <AssociationConnector Association="pszczupakModel.FK__UsersEven__id_us__6B79F03D" />
-        <EntityTypeShape EntityType="pszczupakModel.Dogs" Width="1.5" PointX="6.875" PointY="12.625" />
-        <AssociationConnector Association="pszczupakModel.FK__Dogs__id_race__78D3EB5B" />
-        <AssociationConnector Association="pszczupakModel.FK__Events__id_dog__77DFC722" />
-        </Diagram>
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

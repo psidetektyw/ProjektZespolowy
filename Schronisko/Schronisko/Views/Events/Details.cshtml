@@ -1,0 +1,76 @@
+﻿@model Schronisko.Models.EventsModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EventsModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.approved)
+        </dt>
+
+        @if (@Html.DisplayFor(model => model.approved).ToString() == "0")
+        {
+            <dd>
+                niezatwierdzone
+            </dd>
+        }
+        else
+        {
+            <dd>
+                zatwierdzone
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.users.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_dog)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dogs.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

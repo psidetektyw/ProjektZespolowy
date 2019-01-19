@@ -31,7 +31,5 @@ namespace Schronisko
         public virtual DbSet<Races> Races { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UsersEvents> UsersEvents { get; set; }
-
-        public System.Data.Entity.DbSet<Schronisko.Models.EventsModel> EventsModels { get; set; }
     }
 }

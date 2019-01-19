@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Schronisko</h1>
+    <p class="lead">Zaczynamy Zabawe</p>
+
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+                Mamy Dużo Pracy
+        </p>
+    </div>
+    <div class="row">
+        @Html.Action("ShowNewses", "News")
+    </div>
+</div>

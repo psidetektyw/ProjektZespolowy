@@ -173,5 +173,44 @@ namespace Schronisko.Helpers
                 d.id_race = (int)dogs.id_race;
             return d;
         }
+
+        public static UsersEventsModel ToUsersEventsModelWithID(this UsersEvents ue)
+        {
+            UsersEventsModel uee = new UsersEventsModel();
+
+            uee.id = ue.id;
+            uee.id_event = ue.id_event;
+            uee.id_user = ue.id_user;
+            return uee;
+
+        }
+
+
+
+        public static UserViewModel ToUsersModelWithID(this Users user)
+        {
+            UserViewModel ue = new UserViewModel();
+            ue.id = user.id;
+            ue.name = user.name;
+            ue.surname = user.surname;
+            ue.pesel = user.pesel;
+            ue.city = user.city;
+            ue.street = user.street;
+            ue.house = user.house;
+            ue.login = user.login;
+            ue.email = user.email;
+            ue.password = user.password;
+            ue.role = user.role;
+            //ue.reset_hash = user.reset_hash;
+            ue.phone = user.phone;
+
+            return ue;
+
+
+        }
+
+
+
+
     }
 }

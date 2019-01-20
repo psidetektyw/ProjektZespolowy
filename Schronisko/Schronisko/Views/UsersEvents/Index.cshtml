@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Schronisko.Models.UsersEventsModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Event.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Event.time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Event.time_end)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Event.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Event.approved)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event.time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event.time_end)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event.approved)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |*@
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>

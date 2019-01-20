@@ -1,0 +1,81 @@
+﻿@model Schronisko.Models.UsersEventsModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UsersEventsModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Event.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.date)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event.time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.time)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event.time_end)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.time_end)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event.approved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.approved)
+        </dd>
+
+
+        <dt>
+            Osoby przypisane do eventu
+        </dt>
+
+
+        @foreach (var u in ((List<UserViewModel>)ViewData["U"]))
+        {
+
+            <dd>
+                @Html.DisplayFor(x => x = u.name)
+            </dd>
+        }
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

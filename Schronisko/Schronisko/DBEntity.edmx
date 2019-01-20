@@ -22,6 +22,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="time_end" Type="time" Precision="7" />
           <Property Name="time" Type="time" Precision="7" Nullable="false" />
           <Property Name="description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="approved" Type="int" Nullable="false" />
@@ -83,7 +84,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Events__id_dog__7CA47C3F">
+        <Association Name="FK__Events__id_dog__1293BD5E">
           <End Role="Dogs" Type="Self.Dogs" Multiplicity="0..1" />
           <End Role="Events" Type="Self.Events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -95,7 +96,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Events__id_user__7E8CC4B1">
+        <Association Name="FK__Events__id_user__1387E197">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Events" Type="Self.Events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -121,7 +122,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UsersEven__id_ev__7D98A078">
+        <Association Name="FK__UsersEven__id_ev__119F9925">
           <End Role="Events" Type="Self.Events" Multiplicity="1" />
           <End Role="UsersEvents" Type="Self.UsersEvents" Multiplicity="*" />
           <ReferentialConstraint>
@@ -156,11 +157,11 @@
             <End Role="Races" EntitySet="Races" />
             <End Role="Dogs" EntitySet="Dogs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Events__id_dog__7CA47C3F" Association="Self.FK__Events__id_dog__7CA47C3F">
+          <AssociationSet Name="FK__Events__id_dog__1293BD5E" Association="Self.FK__Events__id_dog__1293BD5E">
             <End Role="Dogs" EntitySet="Dogs" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK__Events__id_user__7E8CC4B1" Association="Self.FK__Events__id_user__7E8CC4B1">
+          <AssociationSet Name="FK__Events__id_user__1387E197" Association="Self.FK__Events__id_user__1387E197">
             <End Role="Users" EntitySet="Users" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
@@ -168,7 +169,7 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="News" EntitySet="News" />
           </AssociationSet>
-          <AssociationSet Name="FK__UsersEven__id_ev__7D98A078" Association="Self.FK__UsersEven__id_ev__7D98A078">
+          <AssociationSet Name="FK__UsersEven__id_ev__119F9925" Association="Self.FK__UsersEven__id_ev__119F9925">
             <End Role="Events" EntitySet="Events" />
             <End Role="UsersEvents" EntitySet="UsersEvents" />
           </AssociationSet>
@@ -192,15 +193,15 @@
             <End Role="Races" EntitySet="Races" />
             <End Role="Dogs" EntitySet="Dogs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Events__id_dog__7CA47C3F" Association="pszczupakModel.FK__Events__id_dog__7CA47C3F">
+          <AssociationSet Name="FK__Events__id_dog__1293BD5E" Association="pszczupakModel.FK__Events__id_dog__1293BD5E">
             <End Role="Dogs" EntitySet="Dogs" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK__Events__id_user__7E8CC4B1" Association="pszczupakModel.FK__Events__id_user__7E8CC4B1">
+          <AssociationSet Name="FK__Events__id_user__1387E197" Association="pszczupakModel.FK__Events__id_user__1387E197">
             <End Role="Users" EntitySet="Users" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK__UsersEven__id_ev__7D98A078" Association="pszczupakModel.FK__UsersEven__id_ev__7D98A078">
+          <AssociationSet Name="FK__UsersEven__id_ev__119F9925" Association="pszczupakModel.FK__UsersEven__id_ev__119F9925">
             <End Role="Events" EntitySet="Events" />
             <End Role="UsersEvents" EntitySet="UsersEvents" />
           </AssociationSet>
@@ -224,7 +225,7 @@
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="id_race" Type="Int32" />
           <NavigationProperty Name="Races" Relationship="pszczupakModel.FK__Dogs__id_race__78D3EB5B" FromRole="Dogs" ToRole="Races" />
-          <NavigationProperty Name="Events" Relationship="pszczupakModel.FK__Events__id_dog__7CA47C3F" FromRole="Dogs" ToRole="Events" />
+          <NavigationProperty Name="Events" Relationship="pszczupakModel.FK__Events__id_dog__1293BD5E" FromRole="Dogs" ToRole="Events" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -232,14 +233,15 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="time_end" Type="Time" Precision="7" />
           <Property Name="time" Type="Time" Nullable="false" Precision="7" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="approved" Type="Int32" Nullable="false" />
           <Property Name="id_user" Type="Int32" Nullable="false" />
           <Property Name="id_dog" Type="Int32" />
-          <NavigationProperty Name="Dogs" Relationship="pszczupakModel.FK__Events__id_dog__7CA47C3F" FromRole="Events" ToRole="Dogs" />
-          <NavigationProperty Name="Users" Relationship="pszczupakModel.FK__Events__id_user__7E8CC4B1" FromRole="Events" ToRole="Users" />
-          <NavigationProperty Name="UsersEvents" Relationship="pszczupakModel.FK__UsersEven__id_ev__7D98A078" FromRole="Events" ToRole="UsersEvents" />
+          <NavigationProperty Name="Dogs" Relationship="pszczupakModel.FK__Events__id_dog__1293BD5E" FromRole="Events" ToRole="Dogs" />
+          <NavigationProperty Name="Users" Relationship="pszczupakModel.FK__Events__id_user__1387E197" FromRole="Events" ToRole="Users" />
+          <NavigationProperty Name="UsersEvents" Relationship="pszczupakModel.FK__UsersEven__id_ev__119F9925" FromRole="Events" ToRole="UsersEvents" />
         </EntityType>
         <EntityType Name="News">
           <Key>
@@ -277,7 +279,7 @@
           <Property Name="role" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="reset_hash" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="phone" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Events" Relationship="pszczupakModel.FK__Events__id_user__7E8CC4B1" FromRole="Users" ToRole="Events" />
+          <NavigationProperty Name="Events" Relationship="pszczupakModel.FK__Events__id_user__1387E197" FromRole="Users" ToRole="Events" />
           <NavigationProperty Name="News" Relationship="pszczupakModel.FK__News__user_id__740F363E" FromRole="Users" ToRole="News" />
           <NavigationProperty Name="UsersEvents" Relationship="pszczupakModel.FK__UsersEven__id_us__6B79F03D" FromRole="Users" ToRole="UsersEvents" />
         </EntityType>
@@ -288,7 +290,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_user" Type="Int32" Nullable="false" />
           <Property Name="id_event" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Events" Relationship="pszczupakModel.FK__UsersEven__id_ev__7D98A078" FromRole="UsersEvents" ToRole="Events" />
+          <NavigationProperty Name="Events" Relationship="pszczupakModel.FK__UsersEven__id_ev__119F9925" FromRole="UsersEvents" ToRole="Events" />
           <NavigationProperty Name="Users" Relationship="pszczupakModel.FK__UsersEven__id_us__6B79F03D" FromRole="UsersEvents" ToRole="Users" />
         </EntityType>
         <Association Name="FK__Dogs__id_race__78D3EB5B">
@@ -303,7 +305,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Events__id_dog__7CA47C3F">
+        <Association Name="FK__Events__id_dog__1293BD5E">
           <End Type="pszczupakModel.Dogs" Role="Dogs" Multiplicity="0..1" />
           <End Type="pszczupakModel.Events" Role="Events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -315,7 +317,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Events__id_user__7E8CC4B1">
+        <Association Name="FK__Events__id_user__1387E197">
           <End Type="pszczupakModel.Users" Role="Users" Multiplicity="1" />
           <End Type="pszczupakModel.Events" Role="Events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -327,7 +329,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UsersEven__id_ev__7D98A078">
+        <Association Name="FK__UsersEven__id_ev__119F9925">
           <End Type="pszczupakModel.Events" Role="Events" Multiplicity="1" />
           <End Type="pszczupakModel.UsersEvents" Role="UsersEvents" Multiplicity="*" />
           <ReferentialConstraint>
@@ -391,6 +393,7 @@
                 <ScalarProperty Name="approved" ColumnName="approved" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="time_end" ColumnName="time_end" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

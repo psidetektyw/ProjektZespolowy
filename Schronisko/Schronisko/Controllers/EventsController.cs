@@ -32,22 +32,34 @@ namespace Schronisko.Controllers
         {
             pszczupakEntities ent = new pszczupakEntities();
             List<EventsModel> events = new List<EventsModel>();
-            IEnumerable<Events> query = ent.Events.ToList().OrderBy(e => e.date);
-            
+            IEnumerable<Events> query = ent.Events.ToList().OrderBy(e => e.time);
+            query = ent.Events.ToList().OrderBy(e => e.date);
+
             foreach (Events e in query)
             {
-                if (e.date.CompareTo(DateTime.Now) < 0) {   //jesli starsze niz dzisiaj to usun
-                    if(!e.time.Equals("00:00:00.0000000"))                  //jesli czas 0 to trwa caly dzien
-                        ent.Events.Remove(e);
+                //if (e.date.Add(x).CompareTo(DateTime.Now) < 0) {   //jesli starsze niz dzisiaj to usun
+                if (e.date.Add(e.time_end).CompareTo(DateTime.Now) < 0) {   //jesli starsze niz dzisiaj to usun
+                ent.Events.Remove(e);
+                    continue;
                 }
-                    string eUserLogin = ent.Users.Find(e.id_user).login;
-                if (e.id_user == UserHelper.GetUserId(User.Identity.Name))
+                if (UserHelper.GetUserRole(User.Identity.Name) == "admin" || UserHelper.GetUserRole(User.Identity.Name) == "manager")
+                {
                     events.Add(e.ToEventsModelWithID());
-                //pracownik widzi eventy userow:
+                    continue;
+                }
+                string eUserLogin = ent.Users.Find(e.id_user).login;
                 if (UserHelper.GetUserRole(User.Identity.Name) == "worker" && UserHelper.GetUserRole(eUserLogin) == "user")
+                {
                     events.Add(e.ToEventsModelWithID());
-                if(UserHelper.GetUserRole(User.Identity.Name) == "admin" || UserHelper.GetUserRole(User.Identity.Name) == "manager")
+                    continue;
+                }
+                if (e.id_user == UserHelper.GetUserId(User.Identity.Name))
+                {
                     events.Add(e.ToEventsModelWithID());
+                }
+                //pracownik widzi eventy userow:
+                
+                
             }
             ent.SaveChanges();
             return View(events);
@@ -118,8 +130,13 @@ namespace Schronisko.Controllers
 
 
         [HttpGet]
-        public ActionResult Edit(int Id)
+        public ActionResult Edit(int? Id)
         {
+            if (Id == null)
+            {
+                return HttpNotFound();
+            }
+
             if (UserHelper.GetUserRole(User.Identity.Name) == "" || User == null) { return RedirectToAction("Index", "Home"); }
             
             pszczupakEntities ent = new pszczupakEntities();
@@ -175,6 +192,11 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
             pszczupakEntities ent = new pszczupakEntities();
             EventsModel model = ent.Events.Where(x => x.id == id).FirstOrDefault().ToEventsModelWithID();
             return View(model);
@@ -183,8 +205,10 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager")
-            { return RedirectToAction("Index", "Home"); }
+            // if (UserHelper.GetUserRole(User.Identity.Name) == "user" || UserHelper.GetUserRole(User.Identity.Name) != "worker")
+            // { return RedirectToAction("Index", "Home"); }
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("logowanie", "Account"); }
+            if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
 
             pszczupakEntities ent = new pszczupakEntities();
             Events events = ent.Events.Where(x => x.id == id).First();

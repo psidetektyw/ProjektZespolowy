@@ -32,24 +32,32 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.time_end, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.time_end, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.time_end, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
         </div>
     </div>
-    @{ 
+    @{
         if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin" || Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager")
         {
-    <div class="form-group">
-        @Html.LabelFor(model => model.approved, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.approved, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.approved, "", new { @class = "text-danger" })
-        </div>
-    </div>
-            }
+            <div class="form-group">
+                @Html.LabelFor(model => model.approved, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.approved, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.approved, "", new { @class = "text-danger" })
+                </div>
+            </div>
         }
+    }
 
     <div class="form-group">
         @Html.LabelFor(model => model.id_dog, htmlAttributes: new { @class = "control-label col-md-2" })

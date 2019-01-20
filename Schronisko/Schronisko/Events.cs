@@ -22,6 +22,7 @@ namespace Schronisko
     
         public int id { get; set; }
         public System.DateTime date { get; set; }
+        public System.TimeSpan time_end { get; set; }
         public System.TimeSpan time { get; set; }
         public string description { get; set; }
         public int approved { get; set; }

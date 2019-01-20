@@ -201,7 +201,20 @@ namespace Schronisko.Controllers
             EventsModel model = ent.Events.Where(x => x.id == id).FirstOrDefault().ToEventsModelWithID();
             return View(model);
         }
+        [HttpGet]
+        public ActionResult Approve(int id)
+        {
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("logowanie", "Account"); }
+            if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
 
+            pszczupakEntities ent = new pszczupakEntities();
+            Events events = ent.Events.Where(x => x.id == id).First();
+            events.approved = 1;
+            ent.Entry(ent.Events.Where(x => x.id == events.id).First()).CurrentValues.SetValues(events);
+            ent.SaveChanges();
+
+            return RedirectToAction("Schedule");
+        }
         [HttpGet]
         public ActionResult Delete(int id)
         {

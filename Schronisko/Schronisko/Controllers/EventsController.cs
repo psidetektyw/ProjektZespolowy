@@ -38,32 +38,39 @@ namespace Schronisko.Controllers
             foreach (Events e in query)
             {
                 //if (e.date.Add(x).CompareTo(DateTime.Now) < 0) {   //jesli starsze niz dzisiaj to usun
-                if (e.date.Add(e.time_end).CompareTo(DateTime.Now) < 0) {   //jesli starsze niz dzisiaj to usun
-                ent.Events.Remove(e);
-                    continue;
+
+
+                //  if (e.date.Add(e.time_end).CompareTo(DateTime.Now) < 0)
+                //  {   //jesli starsze niz dzisiaj to usun
+                //      ent.Events.Remove(e);
+                //      continue;
+                //  }
+
+                    if (UserHelper.GetUserRole(User.Identity.Name) == "admin" || UserHelper.GetUserRole(User.Identity.Name) == "manager")
+                    {
+                        events.Add(e.ToEventsModelWithID());
+                        continue;
+                    }
+                    string eUserLogin = ent.Users.Find(e.id_user).login;
+                    if (UserHelper.GetUserRole(User.Identity.Name) == "worker" && UserHelper.GetUserRole(eUserLogin) == "user")
+                    {
+                        events.Add(e.ToEventsModelWithID());
+                        continue;
+                    }
+                    if (e.id_user == UserHelper.GetUserId(User.Identity.Name))
+                    {
+                        events.Add(e.ToEventsModelWithID());
+                    }
+                    //pracownik widzi eventy userow:
+
+
                 }
-                if (UserHelper.GetUserRole(User.Identity.Name) == "admin" || UserHelper.GetUserRole(User.Identity.Name) == "manager")
-                {
-                    events.Add(e.ToEventsModelWithID());
-                    continue;
-                }
-                string eUserLogin = ent.Users.Find(e.id_user).login;
-                if (UserHelper.GetUserRole(User.Identity.Name) == "worker" && UserHelper.GetUserRole(eUserLogin) == "user")
-                {
-                    events.Add(e.ToEventsModelWithID());
-                    continue;
-                }
-                if (e.id_user == UserHelper.GetUserId(User.Identity.Name))
-                {
-                    events.Add(e.ToEventsModelWithID());
-                }
-                //pracownik widzi eventy userow:
-                
-                
-            }
-            ent.SaveChanges();
-            return View(events);
-            //posortowac!!!
+                ent.SaveChanges();
+                return View(events);
+                //posortowac!!!
+
+
+            
         }
 
 
@@ -117,8 +124,8 @@ namespace Schronisko.Controllers
             else
             {
                 pszczupakEntities ent = new pszczupakEntities();
-                ViewData["User"] = ent.Users.Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
-                ViewData["Dog"] = ent.Dogs.Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
+                ViewData["U"] = ent.Users.Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
+                ViewData["D"] = ent.Dogs.Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
 
                 e.id_user = UserHelper.GetUserId(User.Identity.Name);
                 return View(e);
@@ -179,8 +186,8 @@ namespace Schronisko.Controllers
             else
             {
                 pszczupakEntities ent = new pszczupakEntities();
-                ViewData["User"] = ent.Users.Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
-                ViewData["Dog"] = ent.Dogs.Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
+                ViewData["U"] = ent.Users.Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
+                ViewData["D"] = ent.Dogs.Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
                 return View(e);
             }
 
@@ -201,6 +208,8 @@ namespace Schronisko.Controllers
             EventsModel model = ent.Events.Where(x => x.id == id).FirstOrDefault().ToEventsModelWithID();
             return View(model);
         }
+
+
         [HttpGet]
         public ActionResult Approve(int id)
         {

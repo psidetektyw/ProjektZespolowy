@@ -1,5 +1,6 @@
 ﻿@model Schronisko.Models.UsersEventsModel
 
+
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -63,11 +64,15 @@
         </dt>
 
 
-        @foreach (var u in ((List<UserViewModel>)ViewData["U"]))
+
+
+
+
+        @foreach (Users u in ((List<Users>)ViewData["U"]))
         {
 
             <dd>
-                @Html.DisplayFor(x => x = u.name)
+                @Html.DisplayFor( x => x= u.name)
             </dd>
         }
 

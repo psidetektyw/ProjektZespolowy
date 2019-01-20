@@ -68,11 +68,11 @@
 
 
 
-        @foreach (var u in ((List<Users>)ViewData["U"]))
+        @foreach (Users u in ((List<Users>)ViewData["U"]))
         {
 
             <dd>
-                @Html.DisplayFor(u.name)
+                @Html.DisplayFor( x => x= u.name)
             </dd>
         }
 

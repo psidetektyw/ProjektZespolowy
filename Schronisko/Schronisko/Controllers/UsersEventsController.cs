@@ -100,11 +100,11 @@ namespace Schronisko.Controllers
             int eve = ent.UsersEvents.Where(x => x.id == id).Select(x => x.id_event).FirstOrDefault();
             List<int> usersID = ent.UsersEvents.Where(y => y.id_event == eve ).Select(x => x.id_user).ToList();
 
-            List<UserViewModel> users = new List<UserViewModel>();
-            UserViewModel user = new UserViewModel();
+            List<Users> users = new List<Users>();
+            Users user = new Users();
             foreach (int ID in usersID)
             {
-                user = ent.Users.Where(x=> x.id == ID).FirstOrDefault().ToUsersModelWithID();
+                user = ent.Users.Where(x=> x.id == ID).FirstOrDefault();
                 users.Add(user);
             }
             

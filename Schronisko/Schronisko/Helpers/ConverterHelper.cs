@@ -80,6 +80,7 @@ namespace Schronisko.Helpers
             e.id_dog = given.id_dog;
             e.id_user = given.id_user;
             e.time = given.time;
+            e.time_end = given.time_end;
             return e;
         }
 
@@ -92,6 +93,7 @@ namespace Schronisko.Helpers
             e.id_dog = given.id_dog;
             e.id_user = given.id_user;
             e.time = given.time;
+            e.time_end = given.time_end;
             return e;
         }
 
@@ -105,6 +107,7 @@ namespace Schronisko.Helpers
             e.id_dog = given.id_dog;
             e.id_user = given.id_user;
             e.time = given.time;
+            e.time_end = given.time_end;
             return e;
         }
 
@@ -117,6 +120,7 @@ namespace Schronisko.Helpers
             e.id_dog = given.id_dog;
             e.id_user = given.id_user;
             e.time = given.time;
+            e.time_end = given.time_end;
             return e;
         }
 

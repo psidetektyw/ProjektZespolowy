@@ -34,6 +34,14 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.time_end, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.time_end, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.time_end, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
@@ -50,40 +58,40 @@
                     @Html.ValidationMessageFor(model => model.approved, "", new { @class = "text-danger" })
                 </div>
             </div>
-            }
         }
-            <div class="form-group">
-                @Html.LabelFor(model => model.id_dog, htmlAttributes: new { @class = "control-label col-md-2" })
+    }
+    <div class="form-group">
+        @Html.LabelFor(model => model.id_dog, htmlAttributes: new { @class = "control-label col-md-2" })
 
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.id_dog, ((List<SelectListItem>)ViewData["D"]), new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.dogs.name, "", new { @class = "text-danger" })
-                </div>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.id_dog, ((List<SelectListItem>)ViewData["D"]), new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.dogs.name, "", new { @class = "text-danger" })
+        </div>
 
-            </div>
+    </div>
 
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.id_user, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.id_user, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.id_user, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.id_dog, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.id_dog, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.id_dog, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.id_user, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.id_user, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.id_user, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_dog, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.id_dog, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.id_dog, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>

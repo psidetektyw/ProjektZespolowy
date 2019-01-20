@@ -19,6 +19,9 @@
             @Html.DisplayNameFor(model => model.time)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.time_end)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.description)
         </th>
         <th>
@@ -42,23 +45,26 @@
             @Html.DisplayFor(modelItem => item.time)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.time_end)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.description)
         </td>
 
-           @if(@Html.DisplayFor(modelItem => item.approved).ToString() == "0" )
-            {
-                <td>
-                    niezatwierdzone
-                </td>
-            }
-            else
-            {
-                <td>
-                   zatwierdzone
-                </td>
-            }
+        @if (@Html.DisplayFor(modelItem => item.approved).ToString() == "0")
+        {
+            <td>
+                niezatwierdzone
+            </td>
+        }
+        else
+        {
+            <td>
+                zatwierdzone
+            </td>
+        }
 
-        
+
 
 
         <td>

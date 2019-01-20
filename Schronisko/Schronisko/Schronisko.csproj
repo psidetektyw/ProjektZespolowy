@@ -141,6 +141,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RacesController.cs" />
+    <Compile Include="Controllers\UsersEventsController.cs" />
     <Compile Include="DBEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -282,6 +283,9 @@
     <Content Include="Views\Events\Delete.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Schedule.cshtml" />
+    <Content Include="Views\UsersEvents\Create.cshtml" />
+    <Content Include="Views\UsersEvents\Details.cshtml" />
+    <Content Include="Views\UsersEvents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

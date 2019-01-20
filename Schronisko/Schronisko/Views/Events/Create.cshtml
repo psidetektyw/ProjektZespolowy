@@ -63,7 +63,8 @@
         @Html.LabelFor(model => model.id_dog, htmlAttributes: new { @class = "control-label col-md-2" })
 
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.id_dog, ((List<SelectListItem>)ViewData["D"]), new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownListFor(model => model.id_dog, ((List<SelectListItem>)ViewData["D"]), 
+           new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.dogs.name, "", new { @class = "text-danger" })
         </div>
 

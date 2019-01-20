@@ -33,6 +33,9 @@
         <th>
             @Html.DisplayNameFor(model => model.id_dog)
         </th>
+        <th>
+            Kto
+        </th>
         <th></th>
     </tr>
 
@@ -54,9 +57,7 @@
 
         @if (@Html.DisplayFor(modelItem => item.approved).ToString() == "0")
         {
-            <td>
-                oczekuje na zatwierdzenie
-            </td>
+            <td></td>
         }
         else
         {
@@ -74,6 +75,34 @@
         <td>
             @Html.DisplayFor(modelItem => item.dogs.name)
         </td>
+        @{
+            var userList = ViewData["U"] as List<Schronisko.Users>;
+            var userEventsList = ViewData["EU"] as List<Schronisko.UsersEvents>;
+            if (userEventsList != null && userList != null)
+            {
+                foreach (var v in userEventsList)
+                {
+                    if (v.id_event == item.id)
+                    {
+                        foreach (var usr in userList)
+                        {
+                            if (usr.id == v.id_user)
+                            {
+                                <td>@usr.login</td>
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <td></td>}
+                }
+            }
+            else
+            {
+                <td></td>
+            }
+        }
         <td>
             @{
                 if ((Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin") || (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager"))

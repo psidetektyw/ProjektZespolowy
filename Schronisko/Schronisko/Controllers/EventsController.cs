@@ -19,13 +19,14 @@ namespace Schronisko.Controllers
         // GET: EventsModels
         public ActionResult Index()
         {
-            pszczupakEntities ent = new pszczupakEntities();
-            List<EventsModel> events = new List<EventsModel>();
+            return RedirectToAction("Schedule");
+            //pszczupakEntities ent = new pszczupakEntities();
+            //List<EventsModel> events = new List<EventsModel>();
 
-            foreach (Events e in ent.Events.ToList())
-                events.Add(e.ToEventsModelWithID());
+            //foreach (Events e in ent.Events.ToList())
+            //    events.Add(e.ToEventsModelWithID());
 
-            return View(events);
+            //return View(events);
         }
 
         public ActionResult Schedule()
@@ -34,7 +35,6 @@ namespace Schronisko.Controllers
             List<EventsModel> events = new List<EventsModel>();
             IEnumerable<Events> query = ent.Events.ToList().OrderBy(e => e.time);
             query = ent.Events.ToList().OrderBy(e => e.date);
-
             foreach (Events e in query)
             {
                 //if (e.date.Add(x).CompareTo(DateTime.Now) < 0) {   //jesli starsze niz dzisiaj to usun
@@ -60,13 +60,38 @@ namespace Schronisko.Controllers
                     if (e.id_user == UserHelper.GetUserId(User.Identity.Name))
                     {
                         events.Add(e.ToEventsModelWithID());
+                        continue;
                     }
+                
                     //pracownik widzi eventy userow:
 
 
                 }
-                ent.SaveChanges();
-                return View(events);
+            int id = UserHelper.GetUserId(User.Identity.Name);
+            IEnumerable<UsersEvents> ue = ent.UsersEvents.Where(x => x.id_user == id).ToList();
+            //var eventsQuery =
+            //        from e in query
+            //        join ue in e on e.Doge.DogId equals d.DogId into eq
+            //        select new { Key = e.Doge.DogId, Items = eq };
+            foreach (var ueue in ue)
+            {
+                EventsModel test = ent.Events.Where(x => x.id == ueue.id_event).FirstOrDefault().ToEventsModelWithID();
+                bool f = true;
+                foreach(EventsModel em in events)
+                {
+                    if (em.id == test.id)
+                        f = false;
+                }
+                if (f) events.Add(test);
+            }
+
+            //events.GroupBy(o => o.id).Distinct().ToList();
+            //List<EventsModel> trololl = events.ToList().OrderBy(e => e.id);
+
+            ViewData["EU"] = ent.UsersEvents.ToList();
+            ViewData["U"] = ent.Users.ToList();//Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
+            ent.SaveChanges();
+            return View(events.OrderBy(e => e.time).OrderBy(e => e.date));
                 //posortowac!!!
 
 
@@ -197,9 +222,9 @@ namespace Schronisko.Controllers
         
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
                 return HttpNotFound();
             }
@@ -211,9 +236,16 @@ namespace Schronisko.Controllers
 
 
         [HttpGet]
-        public ActionResult Approve(int id)
+        public ActionResult Approve(int? id)
         {
-            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("logowanie", "Account"); }
+            if (!id.HasValue)
+            {
+                return HttpNotFound();
+            }
+
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") 
+                && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user"))
+            { return RedirectToAction("logowanie", "Account"); }
             if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
 
             pszczupakEntities ent = new pszczupakEntities();
@@ -225,8 +257,12 @@ namespace Schronisko.Controllers
             return RedirectToAction("Schedule");
         }
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
+            if (!id.HasValue)
+            {
+                return HttpNotFound();
+            }
             // if (UserHelper.GetUserRole(User.Identity.Name) == "user" || UserHelper.GetUserRole(User.Identity.Name) != "worker")
             // { return RedirectToAction("Index", "Home"); }
             if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("logowanie", "Account"); }

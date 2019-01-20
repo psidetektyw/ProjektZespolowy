@@ -17,6 +17,9 @@ namespace Schronisko.Controllers
         
         public ActionResult Index()
         {
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager"))
+            { return RedirectToAction("Index", "Home"); }
+
             pszczupakEntities ent = new pszczupakEntities();
             List<UsersEventsModel> ue = new List<UsersEventsModel>();
 
@@ -25,11 +28,7 @@ namespace Schronisko.Controllers
             {
                 ue.Add(new UsersEventsModel(m));
             }
-
-
-
-
-
+            
             return View(ue);
         }
 
@@ -37,6 +36,8 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager"))
+            { return RedirectToAction("Index", "Home"); }
 
             if (UserHelper.GetUserRole(User.Identity.Name) == "" || User == null)
             {
@@ -59,7 +60,8 @@ namespace Schronisko.Controllers
         [HttpPost]
         public ActionResult Create(UsersEventsModel e)
         {
-          
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager"))
+            { return RedirectToAction("Index", "Home"); }
 
 
             pszczupakEntities ent = new pszczupakEntities();
@@ -73,7 +75,7 @@ namespace Schronisko.Controllers
                 ent.UsersEvents.Add(eventt);
                 ent.SaveChanges();
 
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -88,32 +90,43 @@ namespace Schronisko.Controllers
 
         }
 
-
-
-
-        
         [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Delete(int? id)
         {
-            pszczupakEntities ent = new pszczupakEntities();
-            UsersEventsModel model = ent.UsersEvents.Where(x => x.id == id).FirstOrDefault().ToUsersEventsModelWithID();
-            int eve = ent.UsersEvents.Where(x => x.id == id).Select(x => x.id_event).FirstOrDefault();
-            List<int> usersID = ent.UsersEvents.Where(y => y.id_event == eve ).Select(x => x.id_user).ToList();
+            if (!id.HasValue)
+                return HttpNotFound();
 
-            List<Users> users = new List<Users>();
-            Users user = new Users();
-            foreach (int ID in usersID)
-            {
-                user = ent.Users.Where(x=> x.id == ID).FirstOrDefault();
-                users.Add(user);
-            }
-            
-            ViewData["U"] = users;
-            return View(model);
-            
+            pszczupakEntities ent = new pszczupakEntities();
+            UsersEvents ue = ent.UsersEvents.Where(x => x.id == id).First();
+            ent.UsersEvents.Remove(ue);
+            ent.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        
+
+
+        //[HttpGet]
+        //public ActionResult Details(int id)
+        //{
+        //    pszczupakEntities ent = new pszczupakEntities();
+        //    UsersEventsModel model = ent.UsersEvents.Where(x => x.id == id).FirstOrDefault().ToUsersEventsModelWithID();
+        //    int eve = ent.UsersEvents.Where(x => x.id == id).Select(x => x.id_event).FirstOrDefault();
+        //    List<int> usersID = ent.UsersEvents.Where(y => y.id_event == eve ).Select(x => x.id_user).ToList();
+
+        //    List<Users> users = new List<Users>();
+        //    Users user = new Users();
+        //    foreach (int ID in usersID)
+        //    {
+        //        user = ent.Users.Where(x=> x.id == ID).FirstOrDefault();
+        //        users.Add(user);
+        //    }
+
+        //    ViewData["U"] = users;
+        //    return View(model);
+
+        //}
+
+
 
 
 

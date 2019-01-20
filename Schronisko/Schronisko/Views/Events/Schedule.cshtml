@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Harmonogram użytkownika @User.Identity.Name </h2>
 
 <p>
     @Html.ActionLink("Stwórz nowe wydarzenie", "Create")
@@ -79,10 +79,10 @@
                 if ((Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin") || (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager"))
                 //if(Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) != "")
                 {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id });
-                    @Html.ActionLink("Details", "Details", new { id = item.id });
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id });
-                    @Html.ActionLink("Approve", "Approve", new { id = item.id });
+                    @Html.ActionLink(" Edytuj  ", "Edit", new { id = item.id });
+                    @Html.ActionLink(" Szczegóły  ", "Details", new { id = item.id });
+                    @Html.ActionLink(" Usuń  ", "Delete", new { id = item.id });
+                    @Html.ActionLink(" Zatwierdź ", "Approve", new { id = item.id });
                 }
             }
         </td>

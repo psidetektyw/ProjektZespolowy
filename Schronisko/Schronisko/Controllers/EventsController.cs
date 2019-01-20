@@ -112,7 +112,7 @@ namespace Schronisko.Controllers
                 ent.Events.Add(e.ToEventsWithoutID());
                 ent.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Schedule");
             }
             else
             {
@@ -174,7 +174,7 @@ namespace Schronisko.Controllers
                 ent.Entry(ent.Events.Where(x => x.id == events.id).First()).CurrentValues.SetValues(events);
                 ent.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Schedule");
             }
             else
             {
@@ -227,7 +227,7 @@ namespace Schronisko.Controllers
             Events events = ent.Events.Where(x => x.id == id).First();
             ent.Events.Remove(events);
             ent.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Schedule");
         }
 
     }

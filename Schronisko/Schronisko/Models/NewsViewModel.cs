@@ -28,6 +28,7 @@ namespace Schronisko.Models
         public int id { get; set; }
 
         [DisplayName(displayName: "News")]
+        [StringLength(500, ErrorMessage = "Max 500 znaków.")]
         public string news1 { get; set; }
 
         [DataType(DataType.Date)]

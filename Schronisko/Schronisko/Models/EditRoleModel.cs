@@ -15,6 +15,7 @@ namespace Schronisko.Models
         public int id { get; set; }
 
         [DisplayName(displayName: "Rola")]
+        [StringLength(30, ErrorMessage = "Max 30 znaków.")]
         public string role { get; set; }
 
     }

@@ -39,14 +39,17 @@ namespace Schronisko.Models
 
 
         [DisplayName(displayName: "Ulica")]
+        [StringLength(60, ErrorMessage = "Max 60 znaków.")]
         public string street { get; set; }
 
 
         [DisplayName(displayName: "Numer")]
+        [StringLength(15, ErrorMessage = "Max 15 znaków.")]
         public string house { get; set; }
 
 
         [DisplayName(displayName: "Numer telefonu")]
+        [StringLength(25, ErrorMessage = "Max 25 znaków.")]
         public string phone { get; set; }
     }
 }

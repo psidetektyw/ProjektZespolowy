@@ -200,6 +200,13 @@
     <Compile Include="Validators\User\NAZWY.cs" />
     <Compile Include="Validators\User\PASSWORD.cs" />
     <Compile Include="Validators\User\PESEL.cs" />
+    <Compile Include="Views\Shared\Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Shared\Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -286,6 +293,7 @@
     <Content Include="Views\UsersEvents\Create.cshtml" />
     <Content Include="Views\UsersEvents\Details.cshtml" />
     <Content Include="Views\UsersEvents\Index.cshtml" />
+    <Content Include="Views\Shared\Site1.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,11 +1,21 @@
 ﻿body {
+    background-image: url("~/Images/Home/piesPrzyTytule2.jpg");
+    /*//background-color: aqua;*/
+    /*background-repeat: no-repeat;*/
+    background-size: cover;
+    margin: 0;
     padding-top: 50px;
     padding-bottom: 20px;
     font-family: "Lato", sans-serif;
 }
 
+#container {
+    background-image: url("~\Images\Tosiowe\speedpainting_tutorial___aiur_by_soldatnordsken-d4yi3ky.jpg");
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
+
     padding-left: 15px;
     padding-right: 15px;
 }

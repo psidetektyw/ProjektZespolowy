@@ -2,22 +2,23 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_RacesLayout.cshtml";
 }
 
-<h2>Harmonogram użytkownika @User.Identity.Name </h2>
+<div class="bg-text">
+    <h2>Harmonogram użytkownika @User.Identity.Name </h2>
 
-<p>
-    @Html.ActionLink("Stwórz nowe wydarzenie", "Create")
-</p>
-
+    <p>
+        @Html.ActionLink("Stwórz nowe wydarzenie", "Create")
+    </p>
+</div>
 
 
 <div>
     @foreach(var item in Model)
     {
 
-        <div style="overflow:auto;border-bottom:solid; margin-bottom:20px">
+        <div class="bg-text" style="overflow:auto;border-bottom:solid; margin-bottom:20px">
             <div style="float:left">
                 <p><strong>@Html.DisplayNameFor(model => model.date):</strong> @Html.DisplayFor(modelItem => item.date) </p>
                 <p><strong>@Html.DisplayNameFor(model => model.time):</strong> @Html.DisplayFor(modelItem => item.time)</p>

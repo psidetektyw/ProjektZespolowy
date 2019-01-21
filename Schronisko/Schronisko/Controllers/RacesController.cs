@@ -27,7 +27,7 @@ namespace Schronisko.Controllers
         {
             pszczupakEntities ent = new pszczupakEntities();
             RacesModel model = ent.Races.Where(x => x.id == id).FirstOrDefault().ToRacesModelWithID();
-            return PartialView("Details",model);
+            return PartialView("DetailAboutRace",model);
         }
 
         [HttpGet]

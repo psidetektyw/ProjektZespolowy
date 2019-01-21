@@ -5,54 +5,103 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.year_of_birth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.photo_path)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.id_race)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.year_of_birth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.photo_path)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.races.name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
+<h2>Psy znajdujące się w schronisku</h2>
+@if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin" ||
+     Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager" ||
+     Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "worker")
+{
+    <p>
+        @Html.ActionLink("Dodaj psa", "Create")
+    </p>
 }
 
-</table>
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div style=" overflow: auto">
+
+            <img style="display: block; margin: 20px; width:350px;height: auto; float:left " src="~/Images/Dogs/Index/pies1.jpg" />
+
+            <div style="margin-top:25px">
+                <p>
+                    <h4>Imie: @Html.DisplayFor(modelItem => item.name)</h4>
+                </p>
+                <p>
+                    <h4>Rok urodzenia: @Html.DisplayFor(modelItem => item.year_of_birth)</h4>
+                </p>
+                @*<p>
+            @Html.DisplayFor(modelItem => item.photo_path)
+        </p>*@
+                <p>
+                    <h4>Opis: @Html.DisplayFor(modelItem => item.description)</h4>
+                </p>
+                <p>
+                    <h4>Rasa: @Html.DisplayFor(modelItem => item.races.name)</h4>
+                </p>
+                @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin" ||
+                     Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager" ||
+                     Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "worker")
+                {
+                    <p>
+                        @Html.ActionLink("Edytuj", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Szczegóły", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Skasuj", "Delete", new { id = item.id })
+                    </p>
+                }
+                </div>
+
+        </div>
+    }
+</div>
+
+
+
+
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.year_of_birth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.photo_path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_race)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.year_of_birth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.photo_path)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.races.name)
+            </td>
+            <td>
+                @Html.ActionLink("Edytuj", "Edit", new { id=item.id }) |
+                @Html.ActionLink("Szczegóły", "Details", new { id=item.id }) |
+                @Html.ActionLink("Skasuj", "Delete", new { id=item.id })
+            </td>
+        </tr>
+    }
+
+    </table>*@

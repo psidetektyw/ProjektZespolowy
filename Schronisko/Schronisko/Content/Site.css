@@ -1,7 +1,5 @@
 ﻿body {
-    background-image: url("~/Images/Home/piesPrzyTytule2.jpg");
-    /*//background-color: aqua;*/
-    /*background-repeat: no-repeat;*/
+    background-color: antiquewhite;
     background-size: cover;
     margin: 0;
     padding-top: 50px;

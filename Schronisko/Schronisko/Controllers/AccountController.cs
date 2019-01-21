@@ -15,6 +15,10 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             RegisterModel model = new RegisterModel();
             return View(model);
         }
@@ -22,6 +26,11 @@ namespace Schronisko.Controllers
         [HttpPost]
         public ActionResult Register(RegisterModel model)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (ModelState.IsValid)
             {
                 model.password = MD5Helper.MD5Hash(model.password); // hashowanie hasła
@@ -59,6 +68,11 @@ namespace Schronisko.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel model)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             model.password = MD5Helper.MD5Hash(model.password); // hashowanie hasła
             bool flaga = logowanie(model.login,model.password);
             if (flaga == false) {   return View();  }
@@ -69,7 +83,10 @@ namespace Schronisko.Controllers
      
         public ActionResult Logout()
         {
-
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             FormsAuthentication.SignOut();
             // usuwam cookie
             HttpCookie cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "");
@@ -238,6 +255,10 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult ResetPassword()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             EditEmailModel model = new EditEmailModel();
             return View(model);
         }
@@ -251,6 +272,10 @@ namespace Schronisko.Controllers
         [HttpPost]
         public ActionResult ResetPassword(EditEmailModel model)  //View BAG 
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             Guid g = Guid.NewGuid();
             pszczupakEntities ent = new pszczupakEntities();
             Users u = ent.Users.Where(x => x.email == model.email).FirstOrDefault();
@@ -279,30 +304,63 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult ResetPasswordCheckGuid()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            RessetModel res = new RessetModel();
+            return View(res);
         }
 
         [HttpPost]
-        public ActionResult ResetPasswordCheckGuid(string guid, string email, string password)
+        public ActionResult ResetPasswordCheckGuid(RessetModel res)
         {
-            pszczupakEntities ent = new pszczupakEntities();
-            Users u = ent.Users.Where(x => x.email == email && x.reset_hash == guid).FirstOrDefault();
-            if (u != null)
+            if (User.Identity.IsAuthenticated)
             {
-                u.password = MD5Helper.MD5Hash(password);
-                u.reset_hash = null;
-                ent.SaveChanges();
-                return RedirectToAction("Login");
+                return RedirectToAction("Index", "Home");
             }
 
-            else {
+            if (ModelState.IsValid)
+            {
+                pszczupakEntities ent = new pszczupakEntities();
+                Users u = new Users();
 
-                return View(guid, email, password);
+                u = ent.Users.Where(x => x.email == res.email && x.reset_hash == res.guid).FirstOrDefault();
 
+                if (u != null)
+                {
+                    u.password = MD5Helper.MD5Hash(res.password);
+                    u.reset_hash = null;
+                    ent.SaveChanges();
+                    return RedirectToAction("Login");
+                }
+                else {
+                    ViewBag.reset = "Email lub kod jest niepoprawny.";
+                    return View(res);
+                }
+            }
+            else
+            {
+                return View(res);
             }
 
 
             }
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

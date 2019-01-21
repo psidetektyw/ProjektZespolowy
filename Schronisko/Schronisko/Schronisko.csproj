@@ -228,6 +228,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\About\pies-930x600.jpg" />
+    <Content Include="Images\Dogs\Index\18\Kola.jpg" />
     <Content Include="Images\Home\piesPrzyTytule.jpg" />
     <Content Include="Images\Tosiowe\speedpainting_tutorial___aiur_by_soldatnordsken-d4yi3ky.jpg" />
     <Content Include="Scripts\bootstrap.js" />
@@ -298,10 +299,11 @@
     <Content Include="Views\UsersEvents\Index.cshtml" />
     <Content Include="Views\Shared\Site1.Master" />
     <Content Include="Views\Shared\_IndexLayout.cshtml" />
+    <Content Include="Views\Shared\_RacesLayout.cshtml" />
+    <Content Include="Views\Races\DetailAboutRace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\photos\" />
-    <Folder Include="Images\Dogs\Index\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

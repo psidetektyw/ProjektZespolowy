@@ -68,6 +68,10 @@ namespace Schronisko.Helpers
         {
             r.name = races.name;
             r.description = races.description;
+            r.for_animal = races.for_animal;
+            r.for_child = races.for_child;
+            r.origin = races.origin;
+            r.size = races.size;
 
             return r;
         }

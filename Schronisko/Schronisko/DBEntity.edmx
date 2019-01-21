@@ -43,12 +43,12 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="description" Type="nvarchar(max)" />
-          <Property Name="origin" Type="nvarchar" MaxLength="40" />
-          <Property Name="size" Type="nvarchar" MaxLength="20" />
-          <Property Name="for_child" Type="nvarchar" MaxLength="20" />
-          <Property Name="for_animal" Type="nvarchar" MaxLength="20" />
+          <Property Name="origin" Type="nvarchar" MaxLength="50" />
+          <Property Name="size" Type="nvarchar" MaxLength="50" />
+          <Property Name="for_child" Type="nvarchar" MaxLength="50" />
+          <Property Name="for_animal" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -266,12 +266,12 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="origin" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Name="size" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="for_child" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="for_animal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="origin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="for_child" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="for_animal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Dogs" Relationship="pszczupakModel.FK__Dogs__id_race__78D3EB5B" FromRole="Races" ToRole="Dogs" />
         </EntityType>
         <EntityType Name="Users">

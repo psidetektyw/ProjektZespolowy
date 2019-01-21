@@ -48,6 +48,10 @@ namespace Schronisko.Controllers
 
         public ActionResult Login()
         {
+            if(User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             LoginModel login = new LoginModel();
             return View(login);
         }
@@ -62,9 +66,10 @@ namespace Schronisko.Controllers
     
         }
 
-        [Authorize]
+     
         public ActionResult Logout()
         {
+
             FormsAuthentication.SignOut();
             // usuwam cookie
             HttpCookie cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "");
@@ -75,14 +80,14 @@ namespace Schronisko.Controllers
         }
 
 
-
+        [AllowAnonymous]
         public bool logowanie(string username, string password)
         {
 
 
             pszczupakEntities ent = new pszczupakEntities();
 
-            var Usr = ent.Users.Where(x => x.password == password && x.login == username).FirstOrDefault();
+            var Usr = ent.Users.Where(x => x.password == password && (x.login == username || x.email == username)).FirstOrDefault();
             
             if (Usr != null)
             {

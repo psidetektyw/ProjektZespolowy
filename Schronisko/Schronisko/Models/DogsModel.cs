@@ -9,6 +9,7 @@ namespace Schronisko.Models
 {
     public class DogsModel
     {
+        public HttpPostedFileBase Photo { get; set; }
         public int id { get; set; }
 
         [DisplayName("Imię psa")]
@@ -23,7 +24,7 @@ namespace Schronisko.Models
 
 
         [DisplayName("Zdjęcie psa")]
-        [Required(ErrorMessage = "Dodaj zdjęcie.")]
+        
         public string photo_path { get; set; }
 
 

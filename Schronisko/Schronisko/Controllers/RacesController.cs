@@ -23,6 +23,13 @@ namespace Schronisko.Controllers
             return View(race);
         }
 
+        public PartialViewResult RacePartial(int id)
+        {
+            pszczupakEntities ent = new pszczupakEntities();
+            RacesModel model = ent.Races.Where(x => x.id == id).FirstOrDefault().ToRacesModelWithID();
+            return PartialView("Details",model);
+        }
+
         [HttpGet]
         public ActionResult Create()
         {

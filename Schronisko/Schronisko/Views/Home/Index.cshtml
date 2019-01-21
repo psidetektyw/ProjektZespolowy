@@ -1,26 +1,22 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_IndexLayout.cshtml";
 }
+
+<div class="bg-text">
+    <h2>Schronisko dla psów</h2>
+    <h1 style="font-size:60px">Psi Raj</h1>
+    <p style="font-size:25px">Dowiedz się @Html.ActionLink("o nas", "About", "Home") czegoś więcej i podaj pomocną łapę! :)</p>
+</div>
+
+
 
 <div class="jumbotron" style="overflow:auto">
     
-        <img style="display: block;  width:450px;height: auto; float:right " src="~/Images/Home/piesPrzyTytule2.jpg" />
-    
-    <div style="margin-top:85px">
-        <h1>Psi Raj</h1>
-        <p class="lead">Schronisko dla psów.</p>
+    <div style="margin-top:35px">
+        <h1>Aktualności</h1>
         <p>
-            Dowiedz się @Html.ActionLink("o nas", "About", "Home") czegoś więcej i podaj pomocną łapę! :)
+            @Html.Action("ShowNewses", "News")
         </p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Aktualności</h2>
-
-    </div>
-    <div class="row">
-        @Html.Action("ShowNewses", "News")
     </div>
 </div>

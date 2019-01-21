@@ -16,6 +16,8 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.photo_path)
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -36,7 +38,7 @@
     <div class="form-group">
         @Html.Label("Zdjęcie", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-           <input type="file" name="file" />
+            <input type="file" name="file" />
         </div>
     </div>
 

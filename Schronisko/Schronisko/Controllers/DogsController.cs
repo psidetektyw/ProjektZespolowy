@@ -46,12 +46,14 @@ namespace Schronisko.Controllers
                 ent.Dogs.Add(dog);
                 ent.SaveChanges();
 
-                
-                var path = Path.Combine(Server.MapPath($"~/Images/Dogs/Index/{dog.id}"), file.FileName);
-                System.IO.Directory.CreateDirectory(Server.MapPath($"~/Images/Dogs/Index/{dog.id}"));
-                file.SaveAs(path);
+                if (file != null)
+                {
+                    var path = Path.Combine(Server.MapPath($"~/Images/Dogs/Index/{dog.id}"), file.FileName);
+                    System.IO.Directory.CreateDirectory(Server.MapPath($"~/Images/Dogs/Index/{dog.id}"));
+                    file.SaveAs(path);
+                    dog.photo_path = $"/Images/Dogs/Index/{dog.id}/{file.FileName}";
+                }
 
-                dog.photo_path = $"/Images/Dogs/Index/{dog.id}/{file.FileName}";
                 ent.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -73,7 +75,7 @@ namespace Schronisko.Controllers
             pszczupakEntities ent = new pszczupakEntities();
             DogsModel dog = ent.Dogs.Where(x => x.id == Id).FirstOrDefault().ToDogsModelWithID();
             ViewData["Race"] = ent.Races.Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
-
+           
             return View(dog);
         }
 
@@ -83,16 +85,25 @@ namespace Schronisko.Controllers
         {
             if (ModelState.IsValid)
             {
-                var path = Path.Combine(Server.MapPath($"~/Images/Dogs/Index/{dog.id}"), file.FileName);
-                System.IO.Directory.CreateDirectory(Server.MapPath($"~/Images/Dogs/Index/{dog.id}"));
-                file.SaveAs(path);
-                pszczupakEntities ent = new pszczupakEntities();
-                Dogs d = new Dogs();
-                d = ConverterHelper.ToDogsWithID(dog);
+                if (file != null)
+                {
+                    var path = Path.Combine(Server.MapPath($"~/Images/Dogs/Index/{dog.id}"), file.FileName);
+                    System.IO.Directory.CreateDirectory(Server.MapPath($"~/Images/Dogs/Index/{dog.id}"));
+                    file.SaveAs(path);
+                }
+                    pszczupakEntities ent = new pszczupakEntities();
+                    Dogs d = new Dogs();
+                    d = ConverterHelper.ToDogsWithID(dog);
+
+                if (file != null)
                 d.photo_path = $"/Images/Dogs/Index/{dog.id}/{file.FileName}";
-                ent.Entry(ent.Dogs.Where(x => x.id == d.id).First()).CurrentValues.SetValues(d);
-                ent.SaveChanges();
-                return RedirectToAction("Index");
+
+
+                    ent.Entry(ent.Dogs.Where(x => x.id == d.id).First()).CurrentValues.SetValues(d);
+                    ent.SaveChanges();
+                
+
+               return RedirectToAction("Index");
             }
             else
             {

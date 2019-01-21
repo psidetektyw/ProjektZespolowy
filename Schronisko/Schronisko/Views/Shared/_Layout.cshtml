@@ -24,6 +24,10 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Psy", "Index", "Dogs")</li>
                     <li>@Html.ActionLink("Rasy", "Index", "Races")</li>
+                    @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "user")
+                    {
+                        <li>@Html.ActionLink("Harmonogram", "Schedule", "Events")</li>
+                    }
                     <li>@Html.ActionLink("O Nas", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
@@ -31,48 +35,64 @@
             </div>
         </div>
     </div>
-    @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin" || Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager"
-        || Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "worker")
-    {
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-        <div id="mySidenav" class="sidenav">
-            <a>Zarządzaj:</a>
-            <a href="#">@Html.ActionLink("Psy", "Index", "Dogs")</a>
-            <a href="#">@Html.ActionLink("Rasy", "Index", "Races")</a>
-            @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin" || Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager")
-            {
-                <a href="#">@Html.ActionLink("Harmonogram", "Schedule", "Events")</a>
-                <a href="#">@Html.ActionLink("Dodaj pracownika do wydarzenia", "Index", "UsersEvents")</a>
-            }
-            @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin")
-            {
-                <a href="#">@Html.ActionLink("Uprawnienia użytkowników", "UsersRole", "Admin")</a>
-                <a href="#">@Html.ActionLink("Zarządzaj uprawnieniami", "UsersRole", "Admin")</a>}
-            }
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        </div>
-    }
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Psi Raj, Schronisko dla psów</p>
-            </footer>
-        </div>
-        <script>
-            function openNav() {
-                document.getElementById("mySidenav").style.width = "200px";
-                document.getElementById("main").style.marginLeft = "200px";
-            }
 
-            function closeNav() {
-                document.getElementById("mySidenav").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
-            }
-        </script>
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-    </body>
+
+    @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin" ||
+         Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager" ||
+         Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "worker")
+    {
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+            <div id="mySidenav" class="sidenav">
+                <a>Zamknij:</a>
+                <a href="#">@Html.ActionLink("Psy", "Index", "Dogs")</a>
+                <a href="#">@Html.ActionLink("Rasy", "Index", "Races")</a>
+                @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin" || Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager")
+                {
+                    <a href="#">@Html.ActionLink("Harmonogram", "Schedule", "Events")</a>
+                    <a href="#">@Html.ActionLink("Dodaj pracownika do wydarzenia", "Index", "UsersEvents")</a>
+                }
+                @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin")
+                {
+                    <a href="#">@Html.ActionLink("Użytkownicy", "UsersRole", "Admin")</a>
+                    
+                }
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            </div>
+        }
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Psi Raj, Schronisko dla psów</p>
+        </footer>
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "200px";
+            document.getElementById("main").style.marginLeft = "200px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+
+
+</body>
 </html>
 

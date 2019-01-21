@@ -228,6 +228,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\About\pies-930x600.jpg" />
+    <Content Include="Images\Home\piesPrzyTytule.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="DBEntity.edmx">

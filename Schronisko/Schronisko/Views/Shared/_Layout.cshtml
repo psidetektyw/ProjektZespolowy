@@ -24,6 +24,10 @@
                     <li>@Html.ActionLink("Rasy", "Index", "Races")</li>
                     <li>@Html.ActionLink("O Nas", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                    @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) != "")
+                    {
+                        <li>@Html.ActionLink("Harmonogram", "Schedule", "Events")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

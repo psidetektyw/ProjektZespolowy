@@ -23,6 +23,10 @@ namespace Schronisko
         public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
+        public string origin { get; set; }
+        public string size { get; set; }
+        public string for_child { get; set; }
+        public string for_animal { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dogs> Dogs { get; set; }

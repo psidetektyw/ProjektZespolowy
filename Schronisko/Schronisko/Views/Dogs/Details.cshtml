@@ -32,7 +32,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.photo_path)
+            <img style="display: block; margin: 20px; width:350px;height: auto; float:left " src="@Model.photo_path" />
         </dd>
 
         <dt>
@@ -57,3 +57,7 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<div class="row">
+    @Html.Action("RacePartial","Races", new { id = Model.id_race})
+</div>

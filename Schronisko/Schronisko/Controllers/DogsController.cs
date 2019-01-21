@@ -2,6 +2,7 @@
 using Schronisko.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -35,15 +36,23 @@ namespace Schronisko.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(DogsModel d)
+        public ActionResult Create(DogsModel d, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+     
                 pszczupakEntities ent = new pszczupakEntities();
-                ent.Dogs.Add(d.ToDogsWithoutID());
+                Dogs dog = d.ToDogsWithoutID();
+                ent.Dogs.Add(dog);
                 ent.SaveChanges();
 
+                
+                var path = Path.Combine(Server.MapPath($"~/Images/Dogs/Index/{dog.id}"), file.FileName);
+                System.IO.Directory.CreateDirectory(Server.MapPath($"~/Images/Dogs/Index/{dog.id}"));
+                file.SaveAs(path);
 
+                dog.photo_path = $"/Images/Dogs/Index/{dog.id}/{file.FileName}";
+                ent.SaveChanges();
                 return RedirectToAction("Index");
             }
             else
@@ -70,13 +79,17 @@ namespace Schronisko.Controllers
 
 
         [HttpPost]
-        public ActionResult Edit(DogsModel dog)
+        public ActionResult Edit(DogsModel dog, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                var path = Path.Combine(Server.MapPath($"~/Images/Dogs/Index/{dog.id}"), file.FileName);
+                System.IO.Directory.CreateDirectory(Server.MapPath($"~/Images/Dogs/Index/{dog.id}"));
+                file.SaveAs(path);
                 pszczupakEntities ent = new pszczupakEntities();
                 Dogs d = new Dogs();
                 d = ConverterHelper.ToDogsWithID(dog);
+                d.photo_path = $"/Images/Dogs/Index/{dog.id}/{file.FileName}";
                 ent.Entry(ent.Dogs.Where(x => x.id == d.id).First()).CurrentValues.SetValues(d);
                 ent.SaveChanges();
                 return RedirectToAction("Index");

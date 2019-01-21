@@ -298,7 +298,7 @@
     <Content Include="Views\Shared\Site1.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\photos\" />
     <Folder Include="Images\Dogs\Index\" />
     <Folder Include="Images\Tosiowe\" />
   </ItemGroup>

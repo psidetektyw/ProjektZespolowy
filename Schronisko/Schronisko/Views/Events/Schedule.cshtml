@@ -10,7 +10,101 @@
 <p>
     @Html.ActionLink("Stwórz nowe wydarzenie", "Create")
 </p>
-<table class="table">
+
+
+
+<div>
+    @foreach(var item in Model)
+    {
+
+        <div style="overflow:auto;border-bottom:solid; margin-bottom:20px">
+            <div style="float:left">
+                <p><strong>@Html.DisplayNameFor(model => model.date):</strong> @Html.DisplayFor(modelItem => item.date) </p>
+                <p><strong>@Html.DisplayNameFor(model => model.time):</strong> @Html.DisplayFor(modelItem => item.time)</p>
+                <p><strong>@Html.DisplayNameFor(model => model.time_end):</strong> @Html.DisplayFor(modelItem => item.time_end)</p>
+                <p><strong>@Html.DisplayNameFor(model => model.description):</strong> @Html.DisplayFor(modelItem => item.description)</p>
+                <p>
+                    <strong>
+                        @Html.DisplayNameFor(model => model.approved):</strong>
+
+                                        @if (@Html.DisplayFor(modelItem => item.approved).ToString().Equals("0"))
+                                        {
+                                            <strong>niezatwierdzone</strong>
+                                        }
+                                        else
+                                        {
+                                            <strong>
+                                                zatwierdzone
+                                            </strong>
+                                        }
+
+
+</p>
+                <p><strong>@Html.DisplayNameFor(model => model.id_user):</strong> @Html.DisplayFor(modelItem => item.users.name)</p>
+                <p><strong>@Html.DisplayNameFor(model => model.id_dog):</strong> @Html.DisplayFor(modelItem => item.dogs.name)</p>
+
+            </div>
+            <div style="float:right">
+
+                @{
+
+                    var userList = ViewData["U"] as List<Schronisko.Users>;
+                    var userEventsList = ViewData["EU"] as List<Schronisko.UsersEvents>;
+                    if (userEventsList != null && userList != null)
+                    {
+                        foreach (var v in userEventsList)
+                        {
+                            if (v.id_event == item.id)
+                            {
+                                foreach (var usr in userList)
+                                {
+                                    if (usr.id == v.id_user)
+                                    {
+                                        <p>@usr.login</p>
+                                        break;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+
+
+                    if ((Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin") || (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager"))
+                    {
+                        <td>
+                            @Html.ActionLink(" Edytuj  ", "Edit", new { id = item.id }) |
+                            @Html.ActionLink(" Szczegóły  ", "Details", new { id = item.id }) |
+                            @Html.ActionLink(" Usuń  ", "Delete", new { id = item.id }) |
+                            @Html.ActionLink(" Zatwierdź ", "Approve", new { id = item.id })
+                        </td>
+                    }
+
+
+
+                }
+
+
+            </div>
+        </div>
+
+
+
+
+    }
+
+
+</div>
+
+
+
+
+
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.date)
@@ -81,6 +175,7 @@
 
 
         @{
+
             var userList = ViewData["U"] as List<Schronisko.Users>;
             var userEventsList = ViewData["EU"] as List<Schronisko.UsersEvents>;
             if (userEventsList != null && userList != null)
@@ -98,9 +193,7 @@
                             }
                         }
                     }
-                    else
-                    {
-                        <td></td>}
+                   
                 }
             }
             else
@@ -128,4 +221,4 @@
     </tr>
     }
 
-</table>
+</table>*@

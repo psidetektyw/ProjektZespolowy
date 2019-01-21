@@ -2,10 +2,17 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Psi Raj</h1>
-    <p class="lead">Schronisko dla psów.</p>
-
+<div class="jumbotron" style="overflow:auto">
+    
+        <img style="display: block;  width:450px;height: auto; float:right " src="~/Images/Home/piesPrzyTytule2.jpg" />
+    
+    <div style="margin-top:85px">
+        <h1>Psi Raj</h1>
+        <p class="lead">Schronisko dla psów.</p>
+        <p>
+            Dowiedz się @Html.ActionLink("o nas", "About", "Home") czegoś więcej i podaj pomocną łapę! :)
+        </p>
+    </div>
 </div>
 
 <div class="row">

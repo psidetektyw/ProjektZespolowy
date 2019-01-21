@@ -133,7 +133,7 @@ namespace Schronisko.Controllers
             {
                 pszczupakEntities ent = new pszczupakEntities();
 
-                if (UserHelper.GetUserRole(User.Identity.Name) == "user")
+                if (UserHelper.GetUserRole(User.Identity.Name) == "user" || UserHelper.GetUserRole(User.Identity.Name) == "worker")
                 {
                     e.approved = 0;
                 }

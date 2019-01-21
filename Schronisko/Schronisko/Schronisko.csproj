@@ -229,6 +229,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\About\pies-930x600.jpg" />
     <Content Include="Images\Home\piesPrzyTytule.jpg" />
+    <Content Include="Images\Tosiowe\speedpainting_tutorial___aiur_by_soldatnordsken-d4yi3ky.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="DBEntity.edmx">
@@ -300,7 +301,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Dogs\Index\" />
-    <Folder Include="Images\Tosiowe\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

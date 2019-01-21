@@ -5,33 +5,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Wydarzenia</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Stwórz nowe wydarzenie", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Users.name)
+           Imię
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Users.surname)
+            Nazwisko
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Event.date)
+           Data rozpoczęcia
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Event.time)
+           Czas rozpoczęcia
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Event.time_end)
+           Czas zakończenia
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Event.description)
+           Opis wydarzenia
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Event.approved)
+            Status
         </th>
 
         <th></th>

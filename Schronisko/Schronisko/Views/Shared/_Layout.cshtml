@@ -20,19 +20,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Rasy", "Index", "Races")</li>
                     <li>@Html.ActionLink("Psy", "Index", "Dogs")</li>
-                    @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) != "")
-                    {
-                        <li>@Html.ActionLink("Harmonogram", "Schedule", "Events")</li>
-                    }
-
-                    @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin")
-                    {
-                        <li>@Html.ActionLink("Zarządzaj uprawnieniami", "UsersRole", "Admin")</li>}
-
-
+                    <li>@Html.ActionLink("Rasy", "Index", "Races")</li>
+                    <li>@Html.ActionLink("O Nas", "About", "Home")</li>
+                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -54,6 +47,7 @@
             @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin")
             {
                 <a href="#">@Html.ActionLink("Uprawnienia użytkowników", "UsersRole", "Admin")</a>
+                <a href="#">@Html.ActionLink("Zarządzaj uprawnieniami", "UsersRole", "Admin")</a>}
             }
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         </div>
@@ -62,7 +56,7 @@
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - Nasze schronisko</p>
+                <p>&copy; @DateTime.Now.Year - Psi Raj, Schronisko dla psów</p>
             </footer>
         </div>
         <script>

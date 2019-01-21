@@ -14,6 +14,10 @@ namespace Schronisko.Helpers
             RacesModel r = new RacesModel();
             r.id = races.id;
             r.name = races.name;
+            r.for_animal = races.for_animal;
+            r.for_child = races.for_child;
+            r.origin = races.origin;
+            r.size = races.size;
             r.description = races.description;
             
             return r;
@@ -23,6 +27,10 @@ namespace Schronisko.Helpers
         {
             RacesModel r = new RacesModel();
             r.name = races.name;
+            r.for_animal = races.for_animal;
+            r.for_child = races.for_child;
+            r.origin = races.origin;
+            r.size = races.size;
             r.description = races.description;
 
             return r;
@@ -33,6 +41,10 @@ namespace Schronisko.Helpers
             Races r = new Races();
             r.id = races.id;
             r.name = races.name;
+            r.for_animal = races.for_animal;
+            r.for_child = races.for_child;
+            r.origin = races.origin;
+            r.size = races.size;
             r.description = races.description;
 
             return r;
@@ -42,6 +54,10 @@ namespace Schronisko.Helpers
         {
             Races r = new Races();
             r.name = races.name;
+            r.for_animal = races.for_animal;
+            r.for_child = races.for_child;
+            r.origin = races.origin;
+            r.size = races.size;
             r.description = races.description;
 
             return r;

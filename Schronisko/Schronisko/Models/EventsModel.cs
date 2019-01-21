@@ -29,7 +29,7 @@ namespace Schronisko.Models
         [DataType(DataType.Time)]
         [DisplayName("Czas zakończenia")]
         [Required(ErrorMessage = "Podaj czas zakończenia")]
-        public System.TimeSpan time_end { get; set; }
+        public System.TimeSpan? time_end { get; set; }
 
         [DisplayName("Opis wydarzenia")]
         [Required(ErrorMessage = "Krótki opis wydarzenia")]

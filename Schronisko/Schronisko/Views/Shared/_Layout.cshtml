@@ -24,12 +24,12 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Psy", "Index", "Dogs")</li>
                     <li>@Html.ActionLink("Rasy", "Index", "Races")</li>
-                    @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "user")
+                    <li>@Html.ActionLink("O Nas", "About", "Home")</li>
+                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                    @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) != "")
                     {
                         <li>@Html.ActionLink("Harmonogram", "Schedule", "Events")</li>
                     }
-                    <li>@Html.ActionLink("O Nas", "About", "Home")</li>
-                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -297,6 +297,7 @@
     <Content Include="Views\UsersEvents\Details.cshtml" />
     <Content Include="Views\UsersEvents\Index.cshtml" />
     <Content Include="Views\Shared\Site1.Master" />
+    <Content Include="Views\Shared\_IndexLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\photos\" />

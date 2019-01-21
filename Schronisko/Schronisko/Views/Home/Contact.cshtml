@@ -1,25 +1,38 @@
 ﻿@{
     ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_IndexLayout.cshtml";
 }
-<h2>Kontakt</h2>
 
-<address>
-    <h4>Adres</h4>
-    Psi Raj - Schronisko dla Psów<br />
-    81-817 Sopot<br />
-    ul. Malczewskiego 38<br />
+<div class="jumbotron" style="
+    overflow:auto;
+    position: absolute;
+    z-index: 0;
+    font-size: 30px;
+    font-family: Mali;
+    background-color: antiquewhite;
+    top: 10%;
+    left: 50%;">
+
+    <h2>Kontakt</h2>
+
+    <address>
+        <h4>Adres</h4>
+        Psi Raj - Schronisko dla Psów<br />
+        81-817 Sopot<br />
+        ul. Malczewskiego 38<br />
 
 
 
-</address>
+    </address>
 
-<address>
-    <h4>Telefon</h4>
-    <abbr title="Phone">Numer:</abbr>
-    (58) 551-24-57
-</address>
+    <address>
+        <h4>Telefon</h4>
+        <abbr title="Phone">Numer:</abbr>
+        (58) 551-24-57
+    </address>
 
-<address>
-    <h4>Email</h4>
-    <a href="mailto:Support@example.com">PsiRajSchronisko@gmail.com</a><br />
-</address>
+    <address>
+        <h4>Email</h4>
+        <a href="mailto:Support@example.com">PsiRajSchronisko@gmail.com</a><br />
+    </address>
+</div>

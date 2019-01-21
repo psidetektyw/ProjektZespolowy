@@ -32,7 +32,7 @@ namespace Schronisko.Controllers
                 u.password = model.password;
                 u.email = model.email;
                 u.role = "user";
-
+                u.name = model.login;
 
                 ent.Users.Add(u);
                 ent.SaveChanges();

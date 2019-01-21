@@ -20,6 +20,19 @@
                 @Html.DisplayNameFor(model => model.name)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.origin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.for_child)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.for_animal)
+            </th>
+
+            <th>
                 @Html.DisplayNameFor(model => model.description)
             </th>
             <th></th>
@@ -31,12 +44,31 @@
             <td>
                 @Html.DisplayFor(modelItem => item.name)
             </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.origin)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.size)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.for_child)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.for_animal)
+            </td>
+
+
             <td>
                 @Html.DisplayFor(modelItem => item.description)
             </td>
             @if (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin" ||
- Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager" ||
- Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "worker")
+            Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager" ||
+            Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "worker")
             {
                 <td>
                     @Html.ActionLink("Edytuj", "Edit", new { id = item.id }) |
@@ -44,7 +76,7 @@
                     @Html.ActionLink("Skasuj", "Delete", new { id = item.id })
                 </td>
             }
-            </tr>
+        </tr>
         }
 
     </table>

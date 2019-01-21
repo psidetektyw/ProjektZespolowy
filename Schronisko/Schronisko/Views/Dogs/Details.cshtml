@@ -2,12 +2,11 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_RacesLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="bg-text">
+<div class="jumbotron">
     <h2>Szczegóły o psie</h2>
-</div>
-<div class="bg-text">
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -51,18 +50,17 @@
         </dd>
 
     </dl>
-</div>
-@{
-    if ((Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin") || (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager"))
-    {
-        <div class="bg-text">
-            <p>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-                @Html.ActionLink("Back to List", "Index")
-            </p>
-        </div>
+    @{
+        if ((Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin") || (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager"))
+        {
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
         }
     }
-        @*<div class="row">
-                @Html.Action("RacePartial", "Races", new { id = Model.id_race })
-            </div>*@
+    <div class="row">
+        @Html.Action("RacePartial", "Races", new { id = Model.id_race })
+    </div>
+
+</div>

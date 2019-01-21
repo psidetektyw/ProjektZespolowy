@@ -14,6 +14,7 @@ namespace Schronisko.Models
 
         [DisplayName("Imię psa")]
         [Required(ErrorMessage = "Proszę wprowadzić imię psa.")]
+        [StringLength(50, ErrorMessage = "Max 50 znaków.")]
         public string name { get; set; }
         
 

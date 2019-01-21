@@ -14,6 +14,7 @@ namespace Schronisko.Models
     public class RessetModel
     {
         [Required]
+        [DisplayName(displayName: "Kod resetujący")]
         public string guid { get; set; }
 
 

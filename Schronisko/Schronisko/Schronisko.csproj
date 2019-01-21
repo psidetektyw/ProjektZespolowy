@@ -180,6 +180,7 @@
     <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Models\RacesModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\RessetModel.cs" />
     <Compile Include="Models\UsersEventsModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="News.cs">
@@ -277,7 +278,6 @@
     <Content Include="Views\Account\EditEmail.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordAfter.cshtml" />
-    <Content Include="Views\Account\ResetPasswordCheckGuid.cshtml" />
     <Content Include="Views\Dogs\Create.cshtml" />
     <Content Include="Views\Dogs\Delete.cshtml" />
     <Content Include="Views\Dogs\Details.cshtml" />
@@ -301,6 +301,7 @@
     <Content Include="Views\Shared\_IndexLayout.cshtml" />
     <Content Include="Views\Shared\_RacesLayout.cshtml" />
     <Content Include="Views\Races\DetailAboutRace.cshtml" />
+    <Content Include="Views\Account\ResetPasswordCheckGuid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\photos\" />

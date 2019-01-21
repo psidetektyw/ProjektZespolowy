@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Szczegóły o psie</h2>
 
 <div>
-    <h4>DogsModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -59,5 +58,6 @@
 </p>
 
 <div class="row">
-    @Html.Action("RacePartial","Races", new { id = Model.id_race})
+    @*@Html.Action("RacePartial","Races", new { id = Model.id_race})*@
+    @Html.Action("RacePartial", "Races", new { id = Model.id_race })
 </div>

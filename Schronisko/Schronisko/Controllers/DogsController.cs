@@ -23,21 +23,33 @@ namespace Schronisko.Controllers
         }
 
         [HttpGet]
+        
         public ActionResult Create()
         {
+            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
+            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+            else
+            {
 
-            DogsModel d = new DogsModel();
-            pszczupakEntities ent = new pszczupakEntities();
-            ViewData["Race"] = ent.Races.Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
 
-            return View(d);
 
+                DogsModel d = new DogsModel();
+                pszczupakEntities ent = new pszczupakEntities();
+                ViewData["Race"] = ent.Races.Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
+
+                return View(d);
+            }
         }
 
 
         [HttpPost]
         public ActionResult Create(DogsModel d, HttpPostedFileBase file)
         {
+
+            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
+            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+            else { 
+
             if (ModelState.IsValid)
             {
      
@@ -65,6 +77,7 @@ namespace Schronisko.Controllers
                 return View(d);
             }
 
+            }
 
         }
 
@@ -72,6 +85,10 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult Edit(int Id)
         {
+            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
+            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+
+
             pszczupakEntities ent = new pszczupakEntities();
             DogsModel dog = ent.Dogs.Where(x => x.id == Id).FirstOrDefault().ToDogsModelWithID();
             ViewData["Race"] = ent.Races.Select(x => new SelectListItem() { Value = x.id.ToString(), Text = x.name }).ToList();
@@ -83,6 +100,10 @@ namespace Schronisko.Controllers
         [HttpPost]
         public ActionResult Edit(DogsModel dog, HttpPostedFileBase file)
         {
+            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
+            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+
+
             if (ModelState.IsValid)
             {
                 if (file != null)
@@ -118,6 +139,7 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
+
             pszczupakEntities ent = new pszczupakEntities();
             DogsModel model = ent.Dogs.Where(x => x.id == id).FirstOrDefault().ToDogsModelWithID();
             return View(model);
@@ -126,6 +148,10 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
+            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
+            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+
+
             pszczupakEntities ent = new pszczupakEntities();
             Dogs dog = ent.Dogs.Where(x => x.id == id).First();
             ent.Dogs.Remove(dog);

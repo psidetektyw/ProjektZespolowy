@@ -17,7 +17,13 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult UsersList()
         {
-            if (UserHelper.GetUserRole(User.Identity.Name) != "admin") return RedirectToAction("logowanie", "Account");
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin")) { return RedirectToAction("Index", "Home"); }
+
             pszczupakEntities ent = new pszczupakEntities();
 
             List<UserViewModel> users = new List<UserViewModel>();
@@ -36,7 +42,16 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult UsersRole()
         {
-            if (UserHelper.GetUserRole(User.Identity.Name) != "admin") return RedirectToAction("logowanie", "Account");
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin")) { return RedirectToAction("Index", "Home"); }
+
+
+
+
             pszczupakEntities ent = new pszczupakEntities();
 
             List<UserViewModel> users = new List<UserViewModel>();
@@ -58,12 +73,17 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult EditRole(int id)
         {
-            if (UserHelper.GetUserRole(User.Identity.Name) != "admin") return RedirectToAction("logowanie", "Account");
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin")) { return RedirectToAction("Index", "Home"); }
+
+
+
+
             pszczupakEntities ent = new pszczupakEntities();
-
-            
-      
-
 
             var b = new List<SelectListItem>
             {
@@ -95,7 +115,13 @@ namespace Schronisko.Controllers
 
         public ActionResult EditRole(EditRoleModel user)
         {
-            if (UserHelper.GetUserRole(User.Identity.Name) != "admin") return RedirectToAction("Index", "Home");
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin")) { return RedirectToAction("Index", "Home"); }
+
             if (ModelState.IsValid)
             {
                 pszczupakEntities ent = new pszczupakEntities();
@@ -141,7 +167,13 @@ namespace Schronisko.Controllers
 
         [HttpGet]
        public ActionResult DeleteUser(int id) {
-            if (UserHelper.GetUserRole(User.Identity.Name) != "admin") return RedirectToAction("logowanie", "Account");
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin")) { return RedirectToAction("Index", "Home"); }
+
             pszczupakEntities ent = new pszczupakEntities();
             Users user = ent.Users.Where(x => x.id == id).First();
             ent.Users.Remove(user);

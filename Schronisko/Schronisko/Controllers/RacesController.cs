@@ -33,6 +33,8 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
+            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
 
             RacesModel r = new RacesModel();
             return View(r);
@@ -43,6 +45,10 @@ namespace Schronisko.Controllers
         [HttpPost]
         public ActionResult Create(RacesModel r)
         {
+            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
+            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+
+
             if (ModelState.IsValid)
             {
                 pszczupakEntities ent = new pszczupakEntities();
@@ -64,6 +70,9 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult Edit(int Id)
         {
+            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
+            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+
             pszczupakEntities ent = new pszczupakEntities();
             RacesModel race = ent.Races.Where(x => x.id == Id).FirstOrDefault().ToRacesModelWithID();
             return View(race);
@@ -73,6 +82,9 @@ namespace Schronisko.Controllers
         [HttpPost]
         public ActionResult Edit(RacesModel race)
         {
+            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
+            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+
             if (ModelState.IsValid) 
             {
                 pszczupakEntities ent = new pszczupakEntities();
@@ -100,6 +112,9 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
+            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
+            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+
             pszczupakEntities ent = new pszczupakEntities();
             Races race = ent.Races.Where(x => x.id == id).First();
 

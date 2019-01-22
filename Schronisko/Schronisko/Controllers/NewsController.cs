@@ -15,7 +15,7 @@ namespace Schronisko.Controllers
         public ActionResult Add()
         {
          
-            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("logowanie", "Account"); }
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("Login", "Account"); }
             if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home");  }
 
             NewsViewModel model = new NewsViewModel();
@@ -27,7 +27,7 @@ namespace Schronisko.Controllers
         [HttpPost]
         public ActionResult Add(NewsViewModel model)
         {
-            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("logowanie", "Account"); }
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("Login", "Account"); }
             if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
           
             model.user_id = UserHelper.GetUserId(User.Identity.Name);
@@ -87,7 +87,7 @@ namespace Schronisko.Controllers
         [HttpGet]
         public ActionResult DeleteNews(int id)
         {
-            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("logowanie", "Account"); }
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("Login", "Account"); }
             if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
 
             pszczupakEntities ent = new pszczupakEntities();

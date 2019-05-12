@@ -90,9 +90,13 @@ namespace Schronisko.Controllers
 
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "worker")
+               && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
+
             if (!id.HasValue)
                 return HttpNotFound();
 

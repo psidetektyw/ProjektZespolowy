@@ -98,19 +98,11 @@ namespace Schronisko.Controllers
             
         }
 
-
+        [Authorize]
         [HttpGet]
         public ActionResult Create()
         {
-            //if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") 
-            //    && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) {
-            //    return RedirectToAction("logowanie", "Account"); }
-
-            //if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home");  }
-            if (UserHelper.GetUserRole(User.Identity.Name)=="" || User==null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            
 
             EventsModel e = new EventsModel();
             e.id_user = UserHelper.GetUserId(User.Identity.Name);
@@ -125,10 +117,9 @@ namespace Schronisko.Controllers
 
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create(EventsModel e)
         {
-            if (UserHelper.GetUserRole(User.Identity.Name) == "" || User == null) { return RedirectToAction("Index", "Home");  }
-           
             if (ModelState.IsValid)
             {
                 pszczupakEntities ent = new pszczupakEntities();
@@ -160,7 +151,7 @@ namespace Schronisko.Controllers
         }
 
 
-
+        [Authorize]
         [HttpGet]
         public ActionResult Edit(int? Id)
         {
@@ -168,8 +159,6 @@ namespace Schronisko.Controllers
             {
                 return HttpNotFound();
             }
-
-            if (UserHelper.GetUserRole(User.Identity.Name) == "" || User == null) { return RedirectToAction("Index", "Home"); }
             
             pszczupakEntities ent = new pszczupakEntities();
             Events found = ent.Events.Find(Id);
@@ -185,7 +174,7 @@ namespace Schronisko.Controllers
             return View(e);
         }
 
-
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(EventsModel e)
         {
@@ -234,7 +223,7 @@ namespace Schronisko.Controllers
             return View(model);
         }
 
-
+        [Authorize]
         [HttpGet]
         public ActionResult Approve(int? id)
         {
@@ -243,10 +232,9 @@ namespace Schronisko.Controllers
                 return HttpNotFound();
             }
 
-            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") 
-                && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user"))
-            { return RedirectToAction("logowanie", "Account"); }
-            if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "worker")
+               && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
+
 
             pszczupakEntities ent = new pszczupakEntities();
             Events events = ent.Events.Where(x => x.id == id).First();
@@ -256,6 +244,8 @@ namespace Schronisko.Controllers
 
             return RedirectToAction("Schedule");
         }
+
+        [Authorize]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -263,10 +253,8 @@ namespace Schronisko.Controllers
             {
                 return HttpNotFound();
             }
-            // if (UserHelper.GetUserRole(User.Identity.Name) == "user" || UserHelper.GetUserRole(User.Identity.Name) != "worker")
-            // { return RedirectToAction("Index", "Home"); }
-            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("logowanie", "Account"); }
-            if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "worker")
+               && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
 
             pszczupakEntities ent = new pszczupakEntities();
             Events events = ent.Events.Where(x => x.id == id).First();

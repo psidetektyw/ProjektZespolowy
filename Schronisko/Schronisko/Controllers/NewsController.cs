@@ -57,14 +57,14 @@ namespace Schronisko.Controllers
             pszczupakEntities ent = new pszczupakEntities();
             //List<NewsViewModel> lista = new List<NewsViewModel>();
 
-            List<NewsViewModel> lista = ent.News.OrderByDescending(x=>x.add_date).Take(10).Select(x => new NewsViewModel()
-            {
-                id = x.id,
-                news1 = x.news1,
-                user_id = x.user_id,
-                add_date = x.add_date
-           
-            }).ToList();
+            //TUTAJ NIE DZIAA
+            //List<NewsViewModel> lista = ent.News.OrderByDescending(x=>x.add_date).Take(10).Select(x => new NewsViewModel()
+            //{
+            //    id = x.id,
+            //    news1 = x.news1,
+            //    user_id = x.user_id,
+            //    add_date = x.add_date
+            //}).ToList();
 
             //foreach (News n in ent.News.ToList()) {
             //    NewsViewModel b = new NewsViewModel();
@@ -75,11 +75,12 @@ namespace Schronisko.Controllers
             //    b.add_date = n.add_date;
 
             //    lista.Add(b);
-           
+
             //}
 
 
-            return PartialView(lista);
+            //return PartialView(lista);
+            return PartialView(null);
         }
 
 

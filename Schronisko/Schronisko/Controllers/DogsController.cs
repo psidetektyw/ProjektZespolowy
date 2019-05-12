@@ -22,13 +22,12 @@ namespace Schronisko.Controllers
             return View(dog);
         }
 
+        [Authorize]
         [HttpGet]
-        
         public ActionResult Create()
         {
-            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
-            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
-            else
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin")&& (UserHelper.GetUserRole(User.Identity.Name) != "worker")
+               && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
             {
 
 
@@ -41,14 +40,14 @@ namespace Schronisko.Controllers
             }
         }
 
-
+        [Authorize]
         [HttpPost]
         public ActionResult Create(DogsModel d, HttpPostedFileBase file)
         {
 
-            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
-            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
-            else { 
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "worker")
+               && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
+            { 
 
             if (ModelState.IsValid)
             {
@@ -81,12 +80,12 @@ namespace Schronisko.Controllers
 
         }
 
-
+        [Authorize]
         [HttpGet]
         public ActionResult Edit(int Id)
         {
-            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
-            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "worker")
+               && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
 
 
             pszczupakEntities ent = new pszczupakEntities();
@@ -96,12 +95,12 @@ namespace Schronisko.Controllers
             return View(dog);
         }
 
-
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(DogsModel dog, HttpPostedFileBase file)
         {
-            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
-            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "worker")
+               && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
 
 
             if (ModelState.IsValid)
@@ -145,11 +144,12 @@ namespace Schronisko.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            if (UserHelper.GetUserRole(User.Identity.Name) != "admin" || UserHelper.GetUserRole(User.Identity.Name) != "manager" || UserHelper.GetUserRole(User.Identity.Name) != "worker" || UserHelper.GetUserRole(User.Identity.Name) != "user") return RedirectToAction("Login", "Account");
-            else if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "worker")
+                && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
 
 
             pszczupakEntities ent = new pszczupakEntities();

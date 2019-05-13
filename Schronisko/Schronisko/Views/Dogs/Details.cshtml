@@ -1,7 +1,7 @@
 ﻿@model Schronisko.Models.DogsModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Szczegóły Pieska";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -53,8 +53,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edytuj", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Wróć", "Index")
 </p>
 
 <div class="row">

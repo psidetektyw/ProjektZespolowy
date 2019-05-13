@@ -1,11 +1,11 @@
 ﻿@model Schronisko.Models.DogsModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edytuj Pieska";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edycja informacji</h2>
+<h2>Edycja Psa</h2>
 
 @using (Html.BeginForm("Edit","Dogs",FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -76,5 +76,5 @@
 }
 
 <div>
-    @Html.ActionLink("Powrót", "Index")
+    @Html.ActionLink("Wróć", "Index")
 </div>

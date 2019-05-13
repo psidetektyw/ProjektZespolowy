@@ -11,7 +11,7 @@ namespace Schronisko.Controllers
 {
     public class AccountController : Controller
     {
-
+        //OK
         [HttpGet]
         public ActionResult Register()
         {
@@ -23,6 +23,7 @@ namespace Schronisko.Controllers
             return View(model);
         }
 
+        //OK
         [HttpPost]
         public ActionResult Register(RegisterModel model)
         {
@@ -55,6 +56,7 @@ namespace Schronisko.Controllers
             
         }
 
+        //OK
         public ActionResult Login()
         {
             if(User.Identity.IsAuthenticated)
@@ -65,6 +67,7 @@ namespace Schronisko.Controllers
             return View(login);
         }
 
+        //OK
         [HttpPost]
         public ActionResult Login(LoginModel model)
         {
@@ -73,14 +76,14 @@ namespace Schronisko.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            model.password = MD5Helper.MD5Hash(model.password); // hashowanie hasła
+            model.password = MD5Helper.MD5Hash(model.password); 
             bool flaga = logowanie(model.login,model.password);
             if (flaga == false) {   return View();  }
             return RedirectToAction("Index", "Home");
     
         }
 
-     
+        //OK
         public ActionResult Logout()
         {
             if (!User.Identity.IsAuthenticated)
@@ -97,11 +100,12 @@ namespace Schronisko.Controllers
         }
 
 
+        //OK
         [AllowAnonymous]
         public bool logowanie(string username, string password)
         {
 
-
+           
             pszczupakEntities ent = new pszczupakEntities();
 
             var Usr = ent.Users.Where(x => x.password == password && (x.login == username || x.email == username)).FirstOrDefault();
@@ -145,6 +149,7 @@ namespace Schronisko.Controllers
         }
 
 
+        //OK
         [Authorize]
         [HttpGet]
         public ActionResult EditUser()
@@ -166,6 +171,7 @@ namespace Schronisko.Controllers
             return View(model);
         }
 
+        //OK
         [Authorize]
         [HttpPost]
         public ActionResult EditUser(EditUserModel user)
@@ -194,7 +200,7 @@ namespace Schronisko.Controllers
 
         }
 
-
+        //OK
         [Authorize]
         [HttpGet]
         public ActionResult UserDetails()
@@ -208,7 +214,7 @@ namespace Schronisko.Controllers
         }
 
 
-
+        //OK
         [Authorize]
         [HttpGet]
         public ActionResult EditEmail()
@@ -226,6 +232,7 @@ namespace Schronisko.Controllers
             return View(model);
         }
 
+        //OK
         [Authorize]
         [HttpPost]
         public ActionResult EditEmail(EditEmailModel model)
@@ -247,11 +254,8 @@ namespace Schronisko.Controllers
 
 
 
-/// <summary>
-/// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// </summary>
-/// <returns></returns>
-     
+        
+        //OK
         [HttpGet]
         public ActionResult ResetPassword()
         {
@@ -262,13 +266,8 @@ namespace Schronisko.Controllers
             EditEmailModel model = new EditEmailModel();
             return View(model);
         }
-/// <summary>
-/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// </summary>
-/// <returns></returns>
-/// 
 
-      
+        //OK      
         [HttpPost]
         public ActionResult ResetPassword(EditEmailModel model)  //View BAG 
         {
@@ -295,12 +294,9 @@ namespace Schronisko.Controllers
         }
 
 
-/// <summary>
-/// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// </summary>
-/// <returns></returns>
 
-   
+
+        //OK   
         [HttpGet]
         public ActionResult ResetPasswordCheckGuid()
         {
@@ -312,6 +308,7 @@ namespace Schronisko.Controllers
             return View(res);
         }
 
+        //OK
         [HttpPost]
         public ActionResult ResetPasswordCheckGuid(RessetModel res)
         {
@@ -346,20 +343,6 @@ namespace Schronisko.Controllers
 
 
             }
-           
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }

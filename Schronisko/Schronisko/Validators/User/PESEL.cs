@@ -25,7 +25,7 @@ namespace Schronisko.Validators.User
             {
                 return ValidationResult.Success;
             }
-            return new ValidationResult("Invalid length PESEL (must be 11 characters).");
+            return new ValidationResult("Same cyfry 11 znaków");
         }
     }
 }

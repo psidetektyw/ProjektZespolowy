@@ -36,25 +36,25 @@ namespace Schronisko.Models
 
         [NAZWY]
         [DisplayName(displayName: "Imię")]
-        [StringLength(60, ErrorMessage = "Max 60 znaków.")]
+        [StringLength(20, ErrorMessage = "Max 20 znaków.")]
         public string name { get; set; }
 
 
         [NAZWY]
         [DisplayName(displayName: "Nazwisko")]
-        [StringLength(100, ErrorMessage = "Max 100 znaków.")]
+        [StringLength(30, ErrorMessage = "Max 30 znaków.")]
         public string surname { get; set; }
 
 
         [PESEL]
         [DisplayName(displayName: "Pesel")]
-        [StringLength(11, ErrorMessage = "Musi być 11 znaków.")]
+        [StringLength(11, ErrorMessage = "Musi być 11 cyfr.")]
         public string pesel { get; set; }
 
 
-
+        [MIASTO]
         [DisplayName(displayName: "Miasto")]
-        [StringLength(60, ErrorMessage = "Max 60 znaków.")]
+        [StringLength(40, ErrorMessage = "Max 40 znaków.")]
         public string city { get; set; }
 
 
@@ -86,6 +86,7 @@ namespace Schronisko.Models
         [DisplayName(displayName: "Rola")]
         [StringLength(30, ErrorMessage = "Max 30 znaków.")]
         public string role { get; set; }
+
 
         [DisplayName(displayName: "Numer telefonu")]
         [StringLength(25, ErrorMessage = "Max 25 znaków.")]

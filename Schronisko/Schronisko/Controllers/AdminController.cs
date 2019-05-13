@@ -13,7 +13,7 @@ namespace Schronisko.Controllers
     public class AdminController : Controller
     {
   
-
+        //OK
         [HttpGet]
         public ActionResult UsersList()
         {
@@ -39,6 +39,7 @@ namespace Schronisko.Controllers
             return View(users);
         }
 
+        //OK
         [HttpGet]
         public ActionResult UsersRole()
         {
@@ -70,6 +71,7 @@ namespace Schronisko.Controllers
 
         }
 
+        //OK
         [HttpGet]
         public ActionResult EditRole(int id)
         {
@@ -111,8 +113,8 @@ namespace Schronisko.Controllers
         }
 
 
+        //OK
         [HttpPost]
-
         public ActionResult EditRole(EditRoleModel user)
         {
             if (!User.Identity.IsAuthenticated)
@@ -164,7 +166,7 @@ namespace Schronisko.Controllers
 
         }
 
-
+        //OK
         [HttpGet]
        public ActionResult DeleteUser(int id) {
             if (!User.Identity.IsAuthenticated)

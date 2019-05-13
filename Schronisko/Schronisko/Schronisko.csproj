@@ -198,6 +198,7 @@
     </Compile>
     <Compile Include="Validators\User\EMAIL.cs" />
     <Compile Include="Validators\User\LOGIN.cs" />
+    <Compile Include="Validators\User\MIASTO.cs" />
     <Compile Include="Validators\User\NAZWY.cs" />
     <Compile Include="Validators\User\PASSWORD.cs" />
     <Compile Include="Validators\User\PESEL.cs" />
@@ -214,6 +215,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="create.sql" />
     <Content Include="DBEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DBEntity.Context.cs</LastGenOutput>
@@ -224,6 +226,7 @@
       <DependentUpon>DBEntity.edmx</DependentUpon>
       <LastGenOutput>DBEntity.cs</LastGenOutput>
     </Content>
+    <Content Include="drop.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -232,6 +235,7 @@
     <Content Include="Images\Dogs\Index\18\Kola.jpg" />
     <Content Include="Images\Home\piesPrzyTytule.jpg" />
     <Content Include="Images\Tosiowe\speedpainting_tutorial___aiur_by_soldatnordsken-d4yi3ky.jpg" />
+    <Content Include="insert.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="DBEntity.edmx">
@@ -240,6 +244,7 @@
     </EntityDeploy>
     <Content Include="DBEntity.edmx.diagram">
       <DependentUpon>DBEntity.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -252,7 +257,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

@@ -24,7 +24,7 @@ namespace Schronisko.Validators.User
                 }
                 else
                 {
-                    return new ValidationResult("Duża Litera jako pierwszy znak oraz bez spacji");
+                    return new ValidationResult("Duża Litera jako pierwszy znak, bez spacji, minimum 3 znaki");
                 }
             }
 

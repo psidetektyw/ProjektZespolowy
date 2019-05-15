@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#to ignore web.config which is different for every team member
+*/Web.config
+
 # User-specific files
 *.suo
 *.user
@@ -329,4 +332,3 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 
-*.config

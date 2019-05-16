@@ -28,7 +28,6 @@ namespace Schronisko.Models
         [DisplayFormat(DataFormatString = @"{0:hh\:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Time)]
         [DisplayName("Czas zakończenia")]
-        [Required(ErrorMessage = "Podaj czas zakończenia")]
         public System.TimeSpan? time_end { get; set; }
 
         [DisplayName("Opis wydarzenia")]
@@ -44,7 +43,6 @@ namespace Schronisko.Models
         public int id_user { get; set; }
 
         [DisplayName("Pies")]
-        [Required(ErrorMessage = "Wybierz psa")]
         public int? id_dog { get; set; }
 
         public Dogs dogs

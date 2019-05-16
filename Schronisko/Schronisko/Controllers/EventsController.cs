@@ -37,14 +37,45 @@ namespace Schronisko.Controllers
             query = ent.Events.ToList().OrderBy(e => e.date);
             foreach (Events e in query)
             {
-                //if (e.date.Add(x).CompareTo(DateTime.Now) < 0) {   //jesli starsze niz dzisiaj to usun
+                //if there is no time_end == time_end is at 23:59
+                TimeSpan t = new TimeSpan(23, 59, 59);
+                if (e.time_end.HasValue) {
+                    t = (TimeSpan)e.time_end;
+                }
 
+                //here is checked if time_end crossed current moment
+                if ((e.date.Add(t).CompareTo(DateTime.Now)) < 0) {
+                ent.Events.Remove(e);
+                }
+                //jesli data z dzisiaj
+                //if (e.date.CompareTo(DateTime.Now) == 0){   
+                //    //jesli nie ma wartosci to automatycznie do konca dnia
+                //    if (!e.time_end.HasValue)
+                //        e.time_end = new TimeSpan(23, 59, 59);
 
-                //  if (e.date.Add(e.time_end).CompareTo(DateTime.Now) < 0)
-                //  {   //jesli starsze niz dzisiaj to usun
-                //      ent.Events.Remove(e);
-                //      continue;
-                //  }
+                //    if (e.time_end.Value.CompareTo(DateTime.Now.TimeOfDay) <= 0) {
+                //        ent.Events.Remove(e);
+                //    }
+                    /*
+                    DateTime? now = DateTime.Now;
+                    e.time.CompareTo(e.time_end);
+                    TimeSpan t = new TimeSpan();
+                    t.Hours = DateTime.Now.TimeOfDay.
+                    if (e.time_end.HasValue && ((DateTime)e.time_end.CompareTo(DateTime.Now) < 0))
+                    {
+                        //jesli zakonczenie starsze niz dzisiaj to usun
+                        ent.Events.Remove(e);
+                        continue;
+                    }
+                    //zakonczenie null ale juz kolejny dzien
+                    if ((!e.time_end.HasValue) && (e.date.Day!= DateTime.Now.Day))
+                    {   
+                        ent.Events.Remove(e);
+                        continue;
+                    }
+                    //jeszcze nie skonczone
+                    */
+                //}
 
                     if (UserHelper.GetUserRole(User.Identity.Name) == "admin" || UserHelper.GetUserRole(User.Identity.Name) == "manager")
                     {
@@ -238,7 +269,10 @@ namespace Schronisko.Controllers
 
             pszczupakEntities ent = new pszczupakEntities();
             Events events = ent.Events.Where(x => x.id == id).First();
-            events.approved = 1;
+            if (events.approved == 1)
+                events.approved = 0;
+            else
+                events.approved = 1;
             ent.Entry(ent.Events.Where(x => x.id == events.id).First()).CurrentValues.SetValues(events);
             ent.SaveChanges();
 

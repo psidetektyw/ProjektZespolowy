@@ -22,25 +22,39 @@
             <div style="float:left">
                 <p><strong>@Html.DisplayNameFor(model => model.date):</strong> @Html.DisplayFor(modelItem => item.date) </p>
                 <p><strong>@Html.DisplayNameFor(model => model.time):</strong> @Html.DisplayFor(modelItem => item.time)</p>
-                <p><strong>@Html.DisplayNameFor(model => model.time_end):</strong> @Html.DisplayFor(modelItem => item.time_end)</p>
+                <p>
+                    <strong>
+                        @Html.DisplayNameFor(model => model.time_end):
+                    </strong>
+
+                    @if (@Html.DisplayFor(modelItem => item.time_end).ToString().Equals(""))
+                    {
+                        <strong>cały dzień</strong>
+                    }
+                    else
+                    {
+                        <strong>
+                            @Html.DisplayFor(modelItem => item.time_end)
+                        </strong>
+                    }
+                </p>
                 <p><strong>@Html.DisplayNameFor(model => model.description):</strong> @Html.DisplayFor(modelItem => item.description)</p>
                 <p>
                     <strong>
-                        @Html.DisplayNameFor(model => model.approved):</strong>
+                        @Html.DisplayNameFor(model => model.approved):
+                    </strong>
 
-                                        @if (@Html.DisplayFor(modelItem => item.approved).ToString().Equals("0"))
-                                        {
-                                            <strong>niezatwierdzone</strong>
-                                        }
-                                        else
-                                        {
-                                            <strong>
-                                                zatwierdzone
-                                            </strong>
-                                        }
-
-
-</p>
+                    @if (@Html.DisplayFor(modelItem => item.approved).ToString().Equals("0"))
+                    {
+                        <strong>niezatwierdzone</strong>
+                    }
+                    else
+                    {
+                        <strong>
+                            zatwierdzone
+                        </strong>
+                    }
+                </p>
                 <p><strong>@Html.DisplayNameFor(model => model.id_user):</strong> @Html.DisplayFor(modelItem => item.users.name)</p>
                 <p><strong>@Html.DisplayNameFor(model => model.id_dog):</strong> @Html.DisplayFor(modelItem => item.dogs.name)</p>
 
@@ -81,7 +95,7 @@
                             @Html.ActionLink(" Edytuj  ", "Edit", new { id = item.id }) |
                             @Html.ActionLink(" Szczegóły  ", "Details", new { id = item.id }) |
                             @Html.ActionLink(" Usuń  ", "Delete", new { id = item.id }) |
-                            @Html.ActionLink(" Zatwierdź ", "Approve", new { id = item.id })
+                            @Html.ActionLink(" Zmień status ", "Approve", new { id = item.id })
                         </td>
                     }
 

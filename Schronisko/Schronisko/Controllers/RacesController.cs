@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows;
 using Schronisko.Helpers;
 
 namespace Schronisko.Controllers
@@ -130,7 +131,7 @@ namespace Schronisko.Controllers
                 d.id_race = null;
                 ent.Entry(ent.Dogs.Where(x => x.id == d.id).First()).CurrentValues.SetValues(d);
             }
-
+            
             ent.Races.Remove(race);
             ent.SaveChanges();
             return RedirectToAction("Index");

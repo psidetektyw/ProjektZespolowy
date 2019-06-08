@@ -13,7 +13,7 @@
 <table class="table">
     <tr>
         <th>
-           Imię
+           Kto
         </th>
         <th>
             Nazwisko
@@ -58,7 +58,16 @@
             @Html.DisplayFor(modelItem => item.Event.description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Event.approved)
+            @if (@Html.DisplayFor(modelItem => item.Event.approved).ToString().Equals("0"))
+            {
+                <font color="crimson">niezatwierdzone</font>
+            }
+            else
+            {
+                <font color="green">
+                    zatwierdzone
+                </font>
+            }
         </td>
         <td>
             @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |*@

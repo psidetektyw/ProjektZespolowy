@@ -291,11 +291,26 @@ namespace Schronisko.Controllers
                && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
 
             pszczupakEntities ent = new pszczupakEntities();
+            EventsModel model = ent.Events.Where(x => x.id == id).FirstOrDefault().ToEventsModelWithID();
+            return View(model);
+        }
+        [Authorize]
+        [HttpGet]
+        public ActionResult DeleteConf(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return HttpNotFound();
+            }
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "worker")
+               && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
+
+            pszczupakEntities ent = new pszczupakEntities();
             Events events = ent.Events.Where(x => x.id == id).First();
             ent.Events.Remove(events);
             ent.SaveChanges();
             return RedirectToAction("Schedule");
         }
 
-    }
+    }   
 }

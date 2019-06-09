@@ -86,10 +86,15 @@ namespace Schronisko.Controllers
 
 
         [HttpGet]
-        public ActionResult DeleteNews(int id)
+        public ActionResult DeleteNews(int? id)
         {
             if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("Login", "Account"); }
             if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
 
             pszczupakEntities ent = new pszczupakEntities();
 

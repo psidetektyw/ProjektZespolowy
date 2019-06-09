@@ -73,7 +73,7 @@ namespace Schronisko.Controllers
 
         //OK
         [HttpGet]
-        public ActionResult EditRole(int id)
+        public ActionResult EditRole(int? id)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -82,7 +82,10 @@ namespace Schronisko.Controllers
 
             if ((UserHelper.GetUserRole(User.Identity.Name) != "admin")) { return RedirectToAction("Index", "Home"); }
 
-
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
 
 
             pszczupakEntities ent = new pszczupakEntities();
@@ -104,7 +107,7 @@ namespace Schronisko.Controllers
 
             ViewBag.login  = u.login;
 
-            user.id = id;
+            user.id = (int)id;
             user.role = u.role;
       
 
@@ -168,14 +171,37 @@ namespace Schronisko.Controllers
 
         //OK
         [HttpGet]
-       public ActionResult DeleteUser(int id) {
+       public ActionResult DeleteUser(int? id) {
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account");
             }
 
             if ((UserHelper.GetUserRole(User.Identity.Name) != "admin")) { return RedirectToAction("Index", "Home"); }
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            pszczupakEntities ent = new pszczupakEntities();
+            UserViewModel model = new UserViewModel(ent.Users.Where(x => x.id == id).FirstOrDefault());
 
+            return View(model);
+            
+        }
+
+        [HttpGet]
+        public ActionResult DeleteConf(int? id)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin")) { return RedirectToAction("Index", "Home"); }
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
             pszczupakEntities ent = new pszczupakEntities();
             Users user = ent.Users.Where(x => x.id == id).First();
             ent.Users.Remove(user);

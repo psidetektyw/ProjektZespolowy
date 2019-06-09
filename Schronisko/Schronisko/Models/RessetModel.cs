@@ -25,7 +25,7 @@ namespace Schronisko.Models
 
 
         [Required]
-        [StringLength(12, ErrorMessage = "{0} musi mieć minimum {2} a maksymalnie {1}", MinimumLength = 6)]
+        [StringLength(12, ErrorMessage = "{0} musi mieć minimum {2} a maksymalnie {1} znaków", MinimumLength = 6)]
         [DisplayName(displayName: "Nowe Hasło")]
         public string password { get; set; }
 

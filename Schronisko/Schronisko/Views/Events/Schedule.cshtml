@@ -12,7 +12,7 @@
         @Html.ActionLink("Stwórz nowe wydarzenie", "Create")
     </p>
 </div>
-
+<div><br></div>
 
 <div>
     @foreach(var item in Model)
@@ -20,24 +20,7 @@
 
         <div class="bg-text" style="overflow:auto;border-bottom:solid; margin-bottom:20px">
             <div style="float:left">
-                <p><strong>@Html.DisplayNameFor(model => model.date):</strong> @Html.DisplayFor(modelItem => item.date) </p>
-                <p><strong>@Html.DisplayNameFor(model => model.time):</strong> @Html.DisplayFor(modelItem => item.time)</p>
-                <p>
-                    <strong>
-                        @Html.DisplayNameFor(model => model.time_end):
-                    </strong>
-
-                    @if (@Html.DisplayFor(modelItem => item.time_end).ToString().Equals(""))
-                    {
-                        <strong>cały dzień</strong>
-                    }
-                    else
-                    {
-                        <strong>
-                            @Html.DisplayFor(modelItem => item.time_end)
-                        </strong>
-                    }
-                </p>
+                
                 <p><strong>@Html.DisplayNameFor(model => model.description):</strong> @Html.DisplayFor(modelItem => item.description)</p>
                 <p>
                     <strong>
@@ -46,13 +29,13 @@
 
                     @if (@Html.DisplayFor(modelItem => item.approved).ToString().Equals("0"))
                     {
-                        <strong>niezatwierdzone</strong>
+                        <font color="crimson">niezatwierdzone</font>
                     }
                     else
                     {
-                        <strong>
+                        <font color="green">
                             zatwierdzone
-                        </strong>
+                        </font>
                     }
                 </p>
                 <p><strong>@Html.DisplayNameFor(model => model.id_user):</strong> @Html.DisplayFor(modelItem => item.users.name)</p>
@@ -60,6 +43,22 @@
 
             </div>
             <div style="float:right">
+
+                <p><strong>Data:</strong> @Html.DisplayFor(modelItem => item.date) </p>
+                <p><strong>Start:</strong> @Html.DisplayFor(modelItem => item.time)</p>
+                <p>
+
+                    @if (@Html.DisplayFor(modelItem => item.time_end).ToString().Equals(""))
+                    {
+                        <strong>Wydarzenie trwa cały dzień</strong>
+                    }
+                    else
+                    {
+                        <strong>
+                            Koniec: @Html.DisplayFor(modelItem => item.time_end)
+                        </strong>
+                    }
+                </p>
 
                 @{
 

@@ -82,11 +82,14 @@ namespace Schronisko.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult Edit(int Id)
+        public ActionResult Edit(int? Id)
         {
             if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "worker")
                && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
-
+            if (Id == null)
+            {
+                return HttpNotFound();
+            }
 
             pszczupakEntities ent = new pszczupakEntities();
             DogsModel dog = ent.Dogs.Where(x => x.id == Id).FirstOrDefault().ToDogsModelWithID();
@@ -136,9 +139,12 @@ namespace Schronisko.Controllers
 
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
             pszczupakEntities ent = new pszczupakEntities();
             DogsModel model = ent.Dogs.Where(x => x.id == id).FirstOrDefault().ToDogsModelWithID();
             return View(model);
@@ -146,12 +152,34 @@ namespace Schronisko.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "worker")
                 && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
 
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            pszczupakEntities ent = new pszczupakEntities();
+            DogsModel model = ent.Dogs.Where(x => x.id == id).FirstOrDefault().ToDogsModelWithID();
+            return View(model);
+            //Dogs dog = ent.Dogs.Where(x => x.id == id).First();
+            //ent.Dogs.Remove(dog);
+            //ent.SaveChanges();
+            //return RedirectToAction("Index");
+        }
+        [Authorize]
+        [HttpGet]
+        public ActionResult DeleteConf(int? id)
+        {
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "worker")
+                && (UserHelper.GetUserRole(User.Identity.Name) != "manager")) { return RedirectToAction("Index", "Home"); }
 
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
             pszczupakEntities ent = new pszczupakEntities();
             Dogs dog = ent.Dogs.Where(x => x.id == id).First();
             ent.Dogs.Remove(dog);

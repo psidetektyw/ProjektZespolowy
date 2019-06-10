@@ -5,11 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Usuń</h2>
+<h2>Usuwanie</h2>
 
-<h3>Czy napewno chcesz usunąć tego pieska?</h3>
+<h3>Czy napewno chcesz usunąć tego psa?</h3>
+
+
 <div>
-    <h4>DogsModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -29,14 +30,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.photo_path)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.photo_path)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.description)
         </dt>
 
@@ -49,7 +42,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.id_race)
+            @Html.DisplayFor(model => model.races.name)
         </dd>
 
     </dl>
@@ -57,9 +50,9 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Usuń" class="btn btn-default" /> |
-            @Html.ActionLink("Wróć", "Index")
-        </div>
+    <div class="form-actions no-color">
+        @Html.ActionLink("Usuń", "DeleteConf", new { id = Model.id }) |
+        @Html.ActionLink("Wróć", "Index")
+    </div>
     }
 </div>

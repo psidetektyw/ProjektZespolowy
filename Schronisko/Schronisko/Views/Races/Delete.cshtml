@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Usuwanie</h2>
 
-<h3>Czy napewno chcesz usunąć tą rase?</h3>
+<h3>Czy napewno chcesz usunąć tą rasę?</h3>
 <div>
     <h4>Rasa</h4>
     <hr />
@@ -66,9 +66,9 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Usuń" class="btn btn-default" /> |
-            @Html.ActionLink("Wróć", "Index")
-        </div>
+    <div class="form-actions no-color">
+        @Html.ActionLink("Usuń", "DeleteConf", new { id = Model.id }) | |
+        @Html.ActionLink("Wróć", "Index")
+    </div>
     }
 </div>

@@ -15,14 +15,18 @@ namespace Schronisko.Validators
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var emaill = value.ToString();
-
-            pszczupakEntities ent = new pszczupakEntities();
-            if (ent.Users.Where(x => x.email == emaill).Count() > 0)
+            try
             {
-                return new ValidationResult("Taki adres email już istnieje");
+                var emaill = value.ToString();
+
+                pszczupakEntities ent = new pszczupakEntities();
+                if (ent.Users.Where(x => x.email == emaill).Count() > 0)
+                {
+                    return new ValidationResult("Taki adres email już istnieje");
+                }
+                return ValidationResult.Success;
             }
-            return ValidationResult.Success;
+            catch{ return new ValidationResult("Email wymagany."); }
         }
 
 

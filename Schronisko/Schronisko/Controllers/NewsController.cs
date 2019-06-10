@@ -36,10 +36,6 @@ namespace Schronisko.Controllers
                 pszczupakEntities ent = new pszczupakEntities();
 
                News n = model.ToNews();
-                //News n = new News();
-                //n.add_date = DateTime.Now;
-                //n.news1 = model.news1;
-                //n.user_id = model.user_id;
 
 
                 ent.News.Add(n);
@@ -55,47 +51,44 @@ namespace Schronisko.Controllers
         public PartialViewResult ShowNewses()
         {
             pszczupakEntities ent = new pszczupakEntities();
-            //List<NewsViewModel> lista = new List<NewsViewModel>();
-
-            //TUTAJ NIE DZIAA
-            //List<NewsViewModel> lista = ent.News.OrderByDescending(x=>x.add_date).Take(10).Select(x => new NewsViewModel()
-            //{
-            //    id = x.id,
-            //    news1 = x.news1,
-            //    user_id = x.user_id,
-            //    add_date = x.add_date
-            //}).ToList();
-
-            //foreach (News n in ent.News.ToList()) {
-            //    NewsViewModel b = new NewsViewModel();
-
-            //    b.id = n.id;
-            //    b.news1 = n.news1;
-            //    b.user_id = n.user_id;
-            //    b.add_date = n.add_date;
-
-            //    lista.Add(b);
-
-            //}
-
-
-            //return PartialView(lista);
-            return PartialView(null);
+            List<NewsViewModel> lista = new List<NewsViewModel>();
+            foreach (News item in ent.News.OrderByDescending(x => x.add_date).Take(10)) {
+                NewsViewModel model = new NewsViewModel();
+                model.add_date = item.add_date;
+                model.news1 = item.news1;
+                model.user_id = item.user_id;
+                lista.Add(model);
+            }
+            return PartialView(lista);
         }
 
 
 
         [HttpGet]
-        public ActionResult DeleteNews(int id)
+        public ActionResult DeleteNews(int? id)
         {
             if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("Login", "Account"); }
             if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
 
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
             pszczupakEntities ent = new pszczupakEntities();
-
-            News n = ent.News.Where(x => x.id == id).FirstOrDefault();
-
-            ent.News.Remove(n);
+            News n = null;//= ent.News.Where(x => x.id == 1).First();
+            List<News> newsy= ent.News.ToList();
+            foreach(News item in newsy)
+            {
+                if (item.id == id)
+                    n = item;
+            }
+            //n = ent.News.Where(x => x.id == '2').First();
+            //try {
+                ent.News.Remove(n);
+            //}
+            //catch { }
+            
             ent.SaveChanges();
            
             return RedirectToAction("Index","Home");

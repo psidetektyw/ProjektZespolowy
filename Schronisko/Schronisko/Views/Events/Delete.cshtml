@@ -7,9 +7,8 @@
 
 <h2>Usuwanie</h2>
 
-<h3>Na pewno chcesz to usunąć?</h3>
+<h3>Czy na pewno chcesz usunąć wydarzenie?</h3>
 <div>
-    <h4>EventsModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -49,7 +48,17 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.approved)
+            @if (@Html.DisplayFor(model => model.approved).ToString().Equals("0"))
+                    {
+                        <font color="crimson">niezatwierdzone</font>
+                    }
+                    else
+                    {
+                        <font color="green">
+                            zatwierdzone
+                        </font>
+                    }
+
         </dd>
 
         <dt>
@@ -57,7 +66,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.id_user)
+            @Html.DisplayFor(model => model.users.name)
         </dd>
 
         <dt>
@@ -65,7 +74,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.id_dog)
+            @Html.DisplayFor(model => model.dogs.name)
         </dd>
 
     </dl>
@@ -73,9 +82,9 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Usuń" class="btn btn-default" /> |
-            @Html.ActionLink("Powrót do harmonogramu", "Schedule")
-        </div>
+    <div class="form-actions no-color">
+        @Html.ActionLink("Powrót do harmonogramu", "Schedule") |
+        @Html.ActionLink("Usuń", "DeleteConf", new { id = Model.id })
+    </div>
     }
 </div>

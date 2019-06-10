@@ -280,10 +280,17 @@ namespace Schronisko.Controllers
             Users u = ent.Users.Where(x => x.email == model.email).FirstOrDefault();
             if (u != null)
             {
-                u.reset_hash = g.ToString();
-                ent.SaveChanges();
-                MailHelper.SendMessage(model.email, "Twój kod to resetowania hasła: " + g.ToString(), "Reset hasła na portalu schronisko");
-                return View("ResetPasswordAfter");
+                try
+                {
+                    u.reset_hash = g.ToString();
+                    ent.SaveChanges();
+                    MailHelper.SendMessage(model.email, "Twój kod do resetowania hasła: " + g.ToString(), "Reset hasła na portalu schronisko");
+                    return View("ResetPasswordAfter");
+                }
+                catch {
+                    return RedirectToAction("ResetPassword", "Account");
+                }
+                
             }
 
             else {

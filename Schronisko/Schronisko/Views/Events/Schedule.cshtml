@@ -84,18 +84,18 @@
                     }
                     else
                     {
-                        <td></td>
+                        <p></p>
                     }
 
 
                     if ((Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin") || (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager"))
                     {
-                        <td>
+                        <p>
                             @Html.ActionLink(" Edytuj  ", "Edit", new { id = item.id }) |
                             @Html.ActionLink(" Szczegóły  ", "Details", new { id = item.id }) |
                             @Html.ActionLink(" Usuń  ", "Delete", new { id = item.id }) |
                             @Html.ActionLink(" Zmień status ", "Approve", new { id = item.id })
-                        </td>
+                        </p>
                     }
 
 

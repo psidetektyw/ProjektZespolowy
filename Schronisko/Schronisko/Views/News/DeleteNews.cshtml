@@ -1,0 +1,50 @@
+﻿@model  Schronisko.Models.NewsViewModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuwanie</h2>
+
+<h3>Czy napewno chcesz usunąć wiadomość?</h3>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.news1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.news1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.add_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.add_date)
+        </dd>
+
+        <dt>
+            Przez
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        @Html.ActionLink("Usuń", "DeleteNewsConf", new { id = Model.id }) |
+        @Html.ActionLink("Wróć", "Index", "Home")
+    </div>
+    }
+</div>

@@ -57,6 +57,7 @@ namespace Schronisko.Controllers
                 model.add_date = item.add_date;
                 model.news1 = item.news1;
                 model.user_id = item.user_id;
+                model.id = item.id;
                 lista.Add(model);
             }
             return PartialView(lista);
@@ -76,22 +77,50 @@ namespace Schronisko.Controllers
             }
 
             pszczupakEntities ent = new pszczupakEntities();
-            News n = null;//= ent.News.Where(x => x.id == 1).First();
+            News n = null;
             List<News> newsy= ent.News.ToList();
             foreach(News item in newsy)
             {
                 if (item.id == id)
                     n = item;
             }
-            //n = ent.News.Where(x => x.id == '2').First();
-            //try {
-                ent.News.Remove(n);
-            //}
-            //catch { }
+            NewsViewModel nvm = new NewsViewModel();
+            nvm.id = n.id;
+            nvm.user_id = n.user_id;
+            nvm.add_date = n.add_date;
+            nvm.news1 = n.news1;
             
+            return View(nvm);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteNewsConf(int? id)
+        {
+            if ((UserHelper.GetUserRole(User.Identity.Name) != "admin") && (UserHelper.GetUserRole(User.Identity.Name) != "manager") && (UserHelper.GetUserRole(User.Identity.Name) != "worker") && (UserHelper.GetUserRole(User.Identity.Name) != "user")) { return RedirectToAction("Login", "Account"); }
+            if (UserHelper.GetUserRole(User.Identity.Name) == "user") { return RedirectToAction("Index", "Home"); }
+
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            pszczupakEntities ent = new pszczupakEntities();
+            News n = null;
+            List<News> newsy = ent.News.ToList();
+            foreach (News item in newsy)
+            {
+                if (item.id == id)
+                    n = item;
+            }
+            try
+            {
+                ent.News.Remove(n);
+            }
+            catch { }
+
             ent.SaveChanges();
-           
-            return RedirectToAction("Index","Home");
+
+            return RedirectToAction("Index", "Home");
         }
 
 

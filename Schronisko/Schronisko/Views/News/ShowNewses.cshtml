@@ -34,7 +34,6 @@
         @if ((Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "admin") || (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "manager") || (Schronisko.Helpers.UserHelper.GetUserRole(User.Identity.Name) == "worker"))
         {
             <td>
-
                 @Html.ActionLink("Skasuj", "DeleteNews", new { id = item.id })
             </td>
         }
